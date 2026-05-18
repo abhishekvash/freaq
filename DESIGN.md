@@ -163,7 +163,12 @@ The palette is a restrained redline system: warm near-black neutrals, bone text,
 
 ### Named Rules
 
-**The Red Is Signal Rule.** Red should feel rare and consequential. Do not use it as a general decoration or section color.
+**The Red Is Signal Rule.** Red has two jobs depending on the surface, and the rule splits accordingly. Freaq's single-red palette is the identity; do not introduce a second chromatic to "balance" it.
+
+- **Inside the running ritual** (timer, brief, bounce, submit, vote, and any live ritual screen): red stays disciplined and rare. Reserve it for `ARMED`, `LIVE`, peak, clipping, timer heat, and irreversible action. The live timer has to win every collision; nothing else gets to compete with it for redness.
+- **On brand and marketing surfaces** (landing, manifesto, archive, about, long-form): red is the brand's typographic accent and identity color. It is free to land on charged headline accents, thesis or punchline phrases, brand marks, and primary CTAs. Maximum one thesis/punchline red phrase per section, so each instance stays declarative rather than decorative.
+
+In both modes, never use red on body copy, ordinary borders, or as a general section fill.
 
 **The Dark Is Source Rule.** Dark mode is the source of truth. Light mode is a portability layer, not a separate brand.
 
@@ -188,6 +193,9 @@ Recommended import:
 - **Title** (700, `clamp(2rem, 5vw, 4.8rem)`, `0.95`): Use for major panels and screen titles.
 - **Body** (400, `16px`, `1.62`): Use for prose and UI explanations. Keep line length between 65 and 75 characters.
 - **Label** (500, `12px`, `1.4`): Use for seed IDs, metadata, timers, dB labels, run IDs, and compact operational states.
+- **Stagger 1** (700, `clamp(2.4rem, 6vw, 5rem)`): Art-directed small scale for typographic stagger moments. Pair with Stagger 2 and 3.
+- **Stagger 2** (700, `clamp(3.4rem, 8vw, 6.6rem)`): Art-directed medium scale for typographic stagger moments. Also usable for oversize numerals.
+- **Stagger 3** (700, `clamp(4.6rem, 10.4vw, 8.6rem)`): Art-directed large scale for typographic stagger moments. Reserve for the page's mantra or punchline.
 
 ### Named Rules
 
@@ -209,6 +217,8 @@ Freaq should default to tonal layering, hard borders, and luminous red energy ra
 **The No Glass Rule.** Do not use decorative blur, frosted cards, or Apple-store glassiness.
 
 **The Subtle Grain Rule.** Raised Graphite surfaces may carry a 2–4% opacity noise overlay to suggest screen-print wear and resist sterile gloss. The intent is dust on an instrument panel, not retro affectation. If grain reads as vintage or distressed at a glance, remove it. This rule is optional; use it sparingly and only on raised surfaces, never on backgrounds or text.
+
+**The Vessel Section Rule.** Long-form pages (landing, manifesto, archive) may include at most one full-bleed section that is tonally lifted from the page floor, to read as a vessel inset rather than more page. Use Raised Graphite (`#181B1B` dark) for the section background, paired with the Inset Vessel Edge shadow on the top edge. Reserve this for the page's manifesto, mantra, or thesis moment; if every section is a vessel, no section is. The lift must be clearly perceptible — if it reads as a render artifact, push to Raised Graphite or remove the lift entirely.
 
 ## 5. Components
 

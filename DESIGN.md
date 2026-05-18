@@ -1,6 +1,6 @@
 ---
 name: Freaq
-description: Weekly hidden-brief music challenge identity for bedroom producers.
+description: Weekly sealed-seed music ritual identity for bedroom producers.
 colors:
   primary: "#F04436"
   bg-dark: "#080909"
@@ -126,7 +126,7 @@ components:
 
 **Creative North Star: "Redline Instrument"**
 
-Freaq should feel like a calibrated audio instrument under creative pressure. It is dark-first, exact, and tense, but not sterile. The human side comes through in the premise: one hidden brief, one hour, one bounce, and a community waiting to hear the result.
+Freaq should feel like a calibrated audio instrument under creative pressure. It is dark-first, exact, and tense, but not sterile. The human side comes through in the premise: one sealed seed, one hour, one bounce, and a circle waiting to hear the result.
 
 The active visual expression can move between hardware panel, sci-fi instrument, waveform lab, zine mark, or scope readout. The core identity is locked in the typography and colors below.
 
@@ -187,13 +187,13 @@ Recommended import:
 - **Headline** (700, `clamp(2.8rem, 7vw, 7.4rem)`, `0.9`): Use for page and section headings.
 - **Title** (700, `clamp(2rem, 5vw, 4.8rem)`, `0.95`): Use for major panels and screen titles.
 - **Body** (400, `16px`, `1.62`): Use for prose and UI explanations. Keep line length between 65 and 75 characters.
-- **Label** (500, `12px`, `1.4`): Use for brief IDs, metadata, timers, dB labels, run IDs, and compact operational states.
+- **Label** (500, `12px`, `1.4`): Use for seed IDs, metadata, timers, dB labels, run IDs, and compact operational states.
 
 ### Named Rules
 
 **The Readout Rule.** Mono is for readings, not personality. Never set long paragraphs in mono.
 
-**The Charged Headline Rule.** Landing-hero and section-hero headlines should be charged verb-statements in all caps, not marketing taglines. Pair the wordmark (Display) with a declarative phrase (Headline). Example: `FREAQ` over `ONE HOUR. NO RESTART. NO SECOND BOUNCE.` The wordmark is identity; the phrase does the work.
+**The Charged Headline Rule.** Landing-hero and section-hero headlines should be charged verb-statements in all caps, not marketing taglines. Pair the wordmark (Display) with a declarative phrase (Headline). Example: `FREAQ` over `ONE SEED. ONE CLOCK. ONE BOUNCE.` The wordmark is identity; the phrase does the work.
 
 ## 4. Elevation
 
@@ -218,7 +218,8 @@ Freaq should default to tonal layering, hard borders, and luminous red energy ra
 - **Primary:** Peak Red background (`#F04436`) with Instrument Black text (`#080909`), `12px 16px` padding, JetBrains Mono label.
 - **Hover / Focus:** Red may brighten or glow slightly. Focus uses explicit ring treatment and must not rely on color alone.
 - **Secondary / Ghost:** Dark surface or transparent background, bone text, full border, no side-stripe accent.
-- **Verb Vocabulary:** CTA text uses armed-and-loaded language from the studio: `Arm sample brief`, `Strike start`, `Print bounce`, `Lock submission`, `Bounce final`, `Cue brief`. Never use soft marketing verbs (`Try`, `Get started`, `Learn more`, `Explore`, `Continue`). The verb matches the consequence of the action.
+- **Verb Vocabulary:** CTA text inside the running ritual uses armed-and-loaded language from the studio: `Arm sample seed`, `Strike start`, `Print bounce`, `Lock bounce`, `Bounce final`, `Cue seed`. Never use soft marketing verbs (`Try`, `Get started`, `Learn more`, `Explore`, `Continue`). The verb matches the consequence of the action.
+- **Community CTA carve-out:** Landing and marketing surfaces may use the circle-vocabulary CTA `ENTER THE CIRCLE` (and close kin like `INTO THE CIRCLE`) for the pre-ritual join action. This is distinct from in-ritual buttons (Start, Lock, Submit, Bounce), which stay armed-and-loaded. Do not mix the two vocabularies on the same surface.
 
 ### Chips
 
@@ -230,7 +231,7 @@ Freaq should default to tonal layering, hard borders, and luminous red energy ra
 Status communicates ritual state at a glance and should read like printed stamps on an instrument panel, not abstract labels.
 
 - **Style:** Mono label, all caps, full border, restrained fill. Pair every state with text; never color alone.
-- **Vocabulary:** `LOCKED`, `LIVE`, `ARMED`, `BOUNCED`, `FINAL`, `ANON`, `VOTING`, `TOP 3`, `EXPIRED`. Short, specific to ritual state. Avoid abstract product words (`Active`, `Pending`, `In progress`).
+- **Vocabulary:** `LOCKED`, `LIVE`, `ARMED`, `BOUNCED`, `FINAL`, `ANON`, `VOTING`, `TOP 3`, `EXPIRED`, `VAULT OPEN`, `CIRCLE OPEN`, `SOFT RESET`. Short, specific to ritual state. Avoid abstract product words (`Active`, `Pending`, `In progress`).
 - **Color pairing:** Red border for live, armed, locked, or peak states. Green for accepted or bounced. Amber for warning or deadline. Hairline Graphite for ANON or neutral.
 - **Placement:** Inline with metadata (week, brief, run) in mono readouts. Never standalone as decoration.
 
@@ -250,7 +251,7 @@ Status communicates ritual state at a glance and should read like printed stamps
 
 ### Navigation
 
-Navigation should feel like a compact instrument strip. Use Bai Jamjuree for readable labels and JetBrains Mono only for phase, week, brief, or run metadata. Active states should use a red mark plus text, not red alone.
+Navigation should feel like a compact instrument strip. Use Bai Jamjuree for readable labels and JetBrains Mono only for phase, week, seed, or run metadata. Active states should use a red mark plus text, not red alone.
 
 ### Full-Bleed Strips
 
@@ -264,7 +265,7 @@ Long-form pages (landing, manifesto, week archive) can break container with edge
 
 ### Signature Component
 
-**Redline Instrument Panel:** A rounded dark module containing a stable mono timer, brief/channel controls, and red dB meter bars. It represents hidden-brief pressure and should be reused as the main visual metaphor for active challenge states.
+**Redline Instrument Panel:** A rounded dark module containing a stable mono timer, seed/channel controls, and red dB meter bars. It represents sealed-seed pressure and should be reused as the main visual metaphor for active ritual states.
 
 ## 6. Do's and Don'ts
 
@@ -272,7 +273,7 @@ Long-form pages (landing, manifesto, week archive) can break container with edge
 
 - **Do** keep `#F04436` rare and consequential.
 - **Do** use `Bai Jamjuree` for display, body, and button text.
-- **Do** use `JetBrains Mono` for timers, brief IDs, run IDs, and operational metadata.
+- **Do** use `JetBrains Mono` for timers, seed IDs, run IDs, and operational metadata.
 - **Do** preserve AA contrast for body text and controls.
 - **Do** make irreversible actions explicit in text: Start, Submit final, locked, no restart.
 - **Do** respect reduced motion preferences for pulsing, scanline, timer, and reveal effects.

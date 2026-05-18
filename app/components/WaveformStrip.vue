@@ -55,6 +55,11 @@ const bottom = computed(() => {
   }).join(' ')
 })
 
+const body = computed(() => {
+  const bottomReversed = bottom.value.split(' ').reverse().join(' ')
+  return `${top.value} ${bottomReversed}`
+})
+
 const stroke = computed(() =>
   props.variant === 'accent' ? 'var(--freaq-accent)' : 'var(--freaq-line)'
 )
@@ -62,8 +67,14 @@ const stroke = computed(() =>
 
 <template>
   <div
-    class="relative w-full overflow-hidden border-y border-[var(--freaq-line)] bg-[var(--freaq-bg)]"
-    :style="{ height: height + 'px' }"
+    class="relative w-full overflow-hidden"
+    :style="{
+      height: height + 'px',
+      maskImage:
+        'linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%)',
+      WebkitMaskImage:
+        'linear-gradient(to right, transparent 0%, black 14%, black 86%, transparent 100%)',
+    }"
     aria-hidden="true"
   >
     <svg
@@ -71,6 +82,12 @@ const stroke = computed(() =>
       preserveAspectRatio="none"
       class="absolute inset-0 h-full w-full"
     >
+      <polygon
+        :points="body"
+        :fill="stroke"
+        fill-opacity="0.1"
+        stroke="none"
+      />
       <line
         x1="0" :y1="height / 2" x2="1000" :y2="height / 2"
         :stroke="'var(--freaq-line)'" stroke-width="1" stroke-dasharray="2 6"
@@ -79,6 +96,7 @@ const stroke = computed(() =>
         :points="top"
         fill="none"
         :stroke="stroke"
+        stroke-opacity="0.78"
         stroke-width="1.2"
         stroke-linejoin="round"
         stroke-linecap="round"
@@ -87,6 +105,7 @@ const stroke = computed(() =>
         :points="bottom"
         fill="none"
         :stroke="stroke"
+        stroke-opacity="0.78"
         stroke-width="1.2"
         stroke-linejoin="round"
         stroke-linecap="round"

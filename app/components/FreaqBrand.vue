@@ -9,7 +9,7 @@ const props = withDefaults(defineProps<{
   textClass?: string
 }>(), {
   markClass: 'size-2.5 shadow-[0_0_8px_var(--freaq-accent)]',
-  textClass: 'text-[1.3rem]'
+  textClass: 'text-xl'
 })
 
 const attrs = useAttrs()

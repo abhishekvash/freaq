@@ -24,7 +24,7 @@ const rootAttrs = computed(() => {
     :is="as"
     v-bind="rootAttrs"
     :class="[
-      'font-mono text-label leading-[1.4] font-medium tracking-normal uppercase',
+      'font-mono text-label font-medium tracking-normal uppercase',
       panel ? 'rounded-md border border-line-dark bg-surface-dark px-field py-field shadow-vessel-edge' : '',
       attrs.class
     ]"

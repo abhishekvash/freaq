@@ -10,13 +10,13 @@ Freaq is for music producers who care about music as both structure and feeling.
 
 ## Product Purpose
 
-Freaq is a weekly music creative challenge community. Every Friday, members get one 60-minute window to make and submit one track from a hidden brief. Five briefs exist each week, and each member receives one only after clicking Start. There are no restarts, no pre-prep, and no second chances. Submissions reveal Sunday, community voting runs Sunday through Wednesday, and the top three are announced Wednesday before the next Friday cycle begins.
+Freaq is a weekly music creative ritual built around a circle of producers. Every Friday, the vault opens. Members hit Start, get one of five sealed seeds, and have 60 minutes to print one bounce. There are no restarts, no pre-prep, and no second chances. Sunday, bounces hit the circle and voting opens. Voting runs Sunday through Wednesday. Wednesday, the top three lands, the circle soft-resets, and Friday the vault opens again.
 
 Success means the interface makes the ritual feel irreversible, fair, and worth caring about. It should invite producers into deliberate human craft, not content churn.
 
 ## Brand Personality
 
-Freaq is calibrated, obsessive, and raw. The voice is terse, exact, and human under pressure: human but not cozy, technical but not sterile. Technical language should appear as real signal, timer, brief, frequency, meter, and bounce language, not as decorative “tech” costume. The brand should feel like the intersection of frequency and freak: math and feeling, discipline and compulsion.
+Freaq is calibrated, obsessive, and raw. The voice is terse, exact, and human under pressure: human but not cozy, technical but not sterile. Technical language should appear as real signal, timer, seed, frequency, meter, and bounce language, not as decorative “tech” costume. The brand should feel like the intersection of frequency and freak: math and feeling, discipline and compulsion.
 
 ## Anti-references
 
@@ -24,7 +24,7 @@ Avoid Apple-store glassiness, generic SaaS gradients, stock illustration, steril
 
 ## Design Principles
 
-1. Make scarcity visible. The one-hour window, hidden brief, and no-restart rule should be felt in the interface.
+1. Make scarcity visible. The one-hour window, the sealed seed, and the no-restart rule should be felt in the interface.
 2. Treat red as signal. The accent should feel like clipping, arming, recording, peak, and consequence.
 3. Keep the hand in the machine. Even when the UI is technical, it should preserve human pressure and imperfect craft.
 4. Prefer instrument over dashboard. The surface should feel operated, not browsed.
@@ -32,4 +32,4 @@ Avoid Apple-store glassiness, generic SaaS gradients, stock illustration, steril
 
 ## Accessibility & Inclusion
 
-Target WCAG AA contrast minimum for all text, controls, and important state indicators. Do not rely on color alone for live, warning, error, selected, or anonymous states. Respect reduced motion preferences, especially around pulsing, scanline, timer, and reveal effects. Keep timer and brief text stable and readable under pressure, and ensure irreversible actions use explicit text labels.
+Target WCAG AA contrast minimum for all text, controls, and important state indicators. Do not rely on color alone for live, warning, error, selected, or anonymous states. Respect reduced motion preferences, especially around pulsing, scanline, timer, and reveal effects. Keep timer and seed text stable and readable under pressure, and ensure irreversible actions use explicit text labels.

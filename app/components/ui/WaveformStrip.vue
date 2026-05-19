@@ -19,26 +19,27 @@ const points = computed(() => {
 	return createWaveEnvelope({ density: props.density, seed: props.seed });
 });
 
-const top = computed(() => {
-	const h = props.height;
+function createWavePoints(side: "top" | "bottom"): string {
 	return points.value
-		.map((v, i) => {
-			const x = (i / (points.value.length - 1)) * 1000;
-			const y = (h / 2) * (1 - v) + 0.5;
+		.map((value, index) => {
+			const x = (index / (points.value.length - 1)) * 1000;
+			const halfHeight = props.height / 2;
+			const y =
+				side === "top"
+					? halfHeight * (1 - value) + 0.5
+					: halfHeight + halfHeight * value - 0.5;
+
 			return `${x.toFixed(2)},${y.toFixed(2)}`;
 		})
 		.join(" ");
+}
+
+const top = computed(() => {
+	return createWavePoints("top");
 });
 
 const bottom = computed(() => {
-	const h = props.height;
-	return points.value
-		.map((v, i) => {
-			const x = (i / (points.value.length - 1)) * 1000;
-			const y = h / 2 + (h / 2) * v - 0.5;
-			return `${x.toFixed(2)},${y.toFixed(2)}`;
-		})
-		.join(" ");
+	return createWavePoints("bottom");
 });
 
 const body = computed(() => {

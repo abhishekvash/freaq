@@ -14,12 +14,7 @@ const props = withDefaults(
 	}
 );
 
-const attrs = useAttrs();
-
-const rootAttrs = computed(() => {
-	const { class: _class, ...rest } = attrs;
-	return rest;
-});
+const { forwardedAttrs, forwardedClass } = useForwardedAttrs();
 
 const variantClass = computed(() => {
 	if (props.variant === "secondary") {
@@ -33,24 +28,24 @@ const variantClass = computed(() => {
 <template>
 	<a
 		v-if="href"
-		v-bind="rootAttrs"
+		v-bind="forwardedAttrs"
 		:href="href"
 		:class="[
 			'inline-flex min-h-11 items-center justify-center gap-inline rounded-sm border px-field py-3 font-mono text-label font-extrabold tracking-normal uppercase transition-[background-color,border-color,color,box-shadow,transform] duration-200 ease-out focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-focus-dark active:translate-y-px',
 			variantClass,
-			attrs.class,
+			forwardedClass,
 		]"
 	>
 		<slot />
 	</a>
 	<button
 		v-else
-		v-bind="rootAttrs"
+		v-bind="forwardedAttrs"
 		:type="type"
 		:class="[
 			'inline-flex min-h-11 items-center justify-center gap-inline rounded-sm border px-field py-3 font-mono text-label font-extrabold tracking-normal uppercase transition-[background-color,border-color,color,box-shadow,transform] duration-200 ease-out focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-focus-dark active:translate-y-px',
 			variantClass,
-			attrs.class,
+			forwardedClass,
 		]"
 	>
 		<slot />

@@ -14,22 +14,17 @@ withDefaults(
 	}
 );
 
-const attrs = useAttrs();
-
-const rootAttrs = computed(() => {
-	const { class: _class, ...rest } = attrs;
-	return rest;
-});
+const { forwardedAttrs, forwardedClass } = useForwardedAttrs();
 </script>
 
 <template>
 	<a
 		v-if="href"
-		v-bind="rootAttrs"
+		v-bind="forwardedAttrs"
 		:href="href"
 		:class="[
 			'group flex min-h-11 items-center gap-inline rounded-sm transition-colors duration-200 ease-out focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-focus-dark',
-			attrs.class,
+			forwardedClass,
 		]"
 	>
 		<span
@@ -50,8 +45,8 @@ const rootAttrs = computed(() => {
 	</a>
 	<div
 		v-else
-		v-bind="rootAttrs"
-		:class="['flex min-h-11 items-center gap-inline', attrs.class]"
+		v-bind="forwardedAttrs"
+		:class="['flex min-h-11 items-center gap-inline', forwardedClass]"
 	>
 		<span
 			aria-hidden="true"

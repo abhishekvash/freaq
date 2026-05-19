@@ -39,4 +39,7 @@ export default defineNuxtConfig({
 		generationMode: "prepare",
 		eslint: false,
 	},
+	experimental: {
+		inlineRouteRules: true,
+	},
 });

@@ -89,33 +89,19 @@ export function useLandingHeroIntro(
 		});
 
 		const spring = { type: "spring", stiffness: 320, damping: 28 };
-		tl.add(() => {
-			if (refs.line1Ref.value) {
-				animateElement(
-					refs.line1Ref.value,
-					{ opacity: 1, y: 0 },
-					spring
-				);
-			}
-		}, 0.72);
-		tl.add(() => {
-			if (refs.line2Ref.value) {
-				animateElement(
-					refs.line2Ref.value,
-					{ opacity: 1, y: 0 },
-					spring
-				);
-			}
-		}, 0.88);
-		tl.add(() => {
-			if (refs.line3Ref.value) {
-				animateElement(
-					refs.line3Ref.value,
-					{ opacity: 1, y: 0 },
-					spring
-				);
-			}
-		}, 1.04);
+		const headlineFrames = [
+			{ ref: refs.line1Ref, at: 0.72 },
+			{ ref: refs.line2Ref, at: 0.88 },
+			{ ref: refs.line3Ref, at: 1.04 },
+		] as const;
+
+		headlineFrames.forEach(({ ref, at }) => {
+			tl.add(() => {
+				const element = ref.value;
+				if (!element) return;
+				animateElement(element, { opacity: 1, y: 0 }, spring);
+			}, at);
+		});
 
 		if (refs.scanlineRef.value) {
 			tl.fromTo(

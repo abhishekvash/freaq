@@ -9,11 +9,6 @@ type Channel = {
 	body: string;
 };
 
-type EnvelopePoint = {
-	x: number;
-	y: number;
-};
-
 const channels = [
 	{
 		stamp: "SEALED",
@@ -35,161 +30,16 @@ const channels = [
 	},
 ] as const satisfies readonly Channel[];
 
-// ADR envelope geometry (viewBox 800x280). No sustain; decay falls through.
-const ENVELOPE_POINTS = [
-	{ x: 40, y: 232 }, // 0, silence, pre-attack
-	{ x: 220, y: 36 }, // 1, attack peak (seed lands)
-	{ x: 620, y: 196 }, // 2, decay end (hour spent)
-	{ x: 760, y: 232 }, // 3, release silence (bounce printed)
-] as const satisfies readonly [
-	EnvelopePoint,
-	EnvelopePoint,
-	EnvelopePoint,
-	EnvelopePoint,
-];
-
-const ENVELOPE_PATH = ENVELOPE_POINTS.map(
-	(p, i) => `${i === 0 ? "M" : "L"} ${p.x},${p.y}`
-).join(" ");
-
-function segmentLength(
-	a: { x: number; y: number },
-	b: { x: number; y: number }
-) {
-	return Math.hypot(b.x - a.x, b.y - a.y);
-}
-
-const ENVELOPE_SEGMENTS = [
-	{
-		from: ENVELOPE_POINTS[0],
-		to: ENVELOPE_POINTS[1],
-		length: segmentLength(ENVELOPE_POINTS[0], ENVELOPE_POINTS[1]),
-	},
-	{
-		from: ENVELOPE_POINTS[1],
-		to: ENVELOPE_POINTS[2],
-		length: segmentLength(ENVELOPE_POINTS[1], ENVELOPE_POINTS[2]),
-	},
-	{
-		from: ENVELOPE_POINTS[2],
-		to: ENVELOPE_POINTS[3],
-		length: segmentLength(ENVELOPE_POINTS[2], ENVELOPE_POINTS[3]),
-	},
-] as const;
-const TOTAL_LENGTH = ENVELOPE_SEGMENTS.reduce((acc, segment) => {
-	return acc + segment.length;
-}, 0);
-
-// Timing pads let the section settle before attack and hold after release.
-const SCRUB_START_PAD = 0.08;
-const SCRUB_END_PAD = 0.08;
-
-// Scroll distribution inside the active animation window.
-const ATTACK_SCROLL_END = 0.18;
-const DECAY_SCROLL_END = 0.82;
-
-// Path-length proportions at each phase boundary.
-const ATTACK_PATH_END = ENVELOPE_SEGMENTS[0].length / TOTAL_LENGTH;
-const DECAY_PATH_END =
-	(ENVELOPE_SEGMENTS[0].length + ENVELOPE_SEGMENTS[1].length) / TOTAL_LENGTH;
-
-function remapScroll(s: number) {
-	const activeSpan = 1 - SCRUB_START_PAD - SCRUB_END_PAD;
-	const clamped = Math.max(
-		0,
-		Math.min(1, (s - SCRUB_START_PAD) / activeSpan)
-	);
-	if (clamped <= ATTACK_SCROLL_END) {
-		const t = clamped / ATTACK_SCROLL_END;
-		return t * ATTACK_PATH_END;
-	}
-	if (clamped <= DECAY_SCROLL_END) {
-		const t =
-			(clamped - ATTACK_SCROLL_END) /
-			(DECAY_SCROLL_END - ATTACK_SCROLL_END);
-		return ATTACK_PATH_END + t * (DECAY_PATH_END - ATTACK_PATH_END);
-	}
-	const t = (clamped - DECAY_SCROLL_END) / (1 - DECAY_SCROLL_END);
-	return DECAY_PATH_END + t * (1 - DECAY_PATH_END);
-}
-
 const trackRef = ref<HTMLElement>();
 const headerRef = ref<HTMLElement>();
-const scrollProgress = ref(0);
-
-const remappedProgress = computed(() => remapScroll(scrollProgress.value));
-
-const activeIndex = computed(() => {
-	const activeSpan = 1 - SCRUB_START_PAD - SCRUB_END_PAD;
-	const s = Math.max(
-		0,
-		Math.min(1, (scrollProgress.value - SCRUB_START_PAD) / activeSpan)
-	);
-	if (s < ATTACK_SCROLL_END) return 0;
-	if (s < DECAY_SCROLL_END) return 1;
-	return 2;
-});
-
-const playheadPosition = computed(() => {
-	const target = remappedProgress.value * TOTAL_LENGTH;
-	let acc = 0;
-	for (const segment of ENVELOPE_SEGMENTS) {
-		if (target <= acc + segment.length) {
-			const t =
-				segment.length === 0 ? 0 : (target - acc) / segment.length;
-			return {
-				x: segment.from.x + (segment.to.x - segment.from.x) * t,
-				y: segment.from.y + (segment.to.y - segment.from.y) * t,
-			};
-		}
-		acc += segment.length;
-	}
-	return ENVELOPE_POINTS[3];
-});
-
-const dashOffset = computed(() => TOTAL_LENGTH * (1 - remappedProgress.value));
+const { activeIndex, dashOffset, envelopePath, playheadPosition, totalLength } =
+	useLandingPactScroll(trackRef);
 
 const { addRevealTarget } = useLandingReveal();
 addRevealTarget(() => headerRef.value, {
 	delay: LANDING_HERO_INTRO_COMPLETE_DELAY,
 	delayFromMount: true,
 	y: 18,
-});
-
-onMounted(() => {
-	if (typeof window === "undefined") return;
-
-	if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
-
-	let raf = 0;
-
-	function update() {
-		if (!trackRef.value) return;
-		const rect = trackRef.value.getBoundingClientRect();
-		const viewportHeight = window.innerHeight;
-		const max = rect.height - viewportHeight;
-		if (max <= 0) {
-			scrollProgress.value = 0;
-			return;
-		}
-		const scrolled = -rect.top;
-		scrollProgress.value = Math.max(0, Math.min(1, scrolled / max));
-	}
-
-	function handler() {
-		cancelAnimationFrame(raf);
-		raf = requestAnimationFrame(update);
-	}
-
-	update();
-	window.addEventListener("scroll", handler, { passive: true });
-	window.addEventListener("resize", handler, { passive: true });
-
-	onBeforeUnmount(() => {
-		cancelAnimationFrame(raf);
-		window.removeEventListener("scroll", handler);
-		window.removeEventListener("resize", handler);
-	});
 });
 </script>
 
@@ -231,7 +81,7 @@ onMounted(() => {
 
 							<!-- Full envelope (dim) -->
 							<path
-								:d="ENVELOPE_PATH"
+								:d="envelopePath"
 								fill="none"
 								stroke="var(--freaq-line)"
 								stroke-width="1.4"
@@ -240,13 +90,13 @@ onMounted(() => {
 
 							<!-- Played portion (accent), revealed by dash offset -->
 							<path
-								:d="ENVELOPE_PATH"
+								:d="envelopePath"
 								fill="none"
 								stroke="var(--freaq-accent)"
 								stroke-width="2.8"
 								stroke-linecap="round"
 								stroke-linejoin="round"
-								:stroke-dasharray="TOTAL_LENGTH"
+								:stroke-dasharray="totalLength"
 								:stroke-dashoffset="dashOffset"
 							/>
 

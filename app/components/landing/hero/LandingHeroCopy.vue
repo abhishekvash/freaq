@@ -16,7 +16,7 @@ defineExpose({
 
 <template>
 	<h1
-		class="col-span-12 mt-field max-w-[11ch] font-display text-headline font-bold tracking-normal text-text-dark uppercase lg:col-span-9 lg:max-w-none"
+		class="col-span-12 mt-field max-w-[11ch] font-display text-headline font-bold tracking-normal text-text-dark uppercase lg:col-span-10 lg:max-w-none"
 	>
 		<span
 			ref="line1Ref"

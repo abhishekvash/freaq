@@ -27,15 +27,21 @@ const rootAttrs = computed(() => {
 		v-if="href"
 		v-bind="rootAttrs"
 		:href="href"
-		:class="['flex items-center gap-inline', attrs.class]"
+		:class="[
+			'group flex min-h-11 items-center gap-inline rounded-sm transition-colors duration-200 ease-out focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-focus-dark',
+			attrs.class,
+		]"
 	>
 		<span
 			aria-hidden="true"
-			:class="['inline-block bg-accent-dark', markClass]"
+			:class="[
+				'inline-block bg-accent-dark transition-[box-shadow,transform] duration-200 ease-out group-hover:scale-y-150',
+				markClass,
+			]"
 		/>
 		<span
 			:class="[
-				'font-display font-bold tracking-normal text-text-dark',
+				'font-display font-bold tracking-normal text-text-dark transition-colors duration-200 ease-out group-hover:text-muted-dark',
 				textClass,
 			]"
 		>
@@ -45,7 +51,7 @@ const rootAttrs = computed(() => {
 	<div
 		v-else
 		v-bind="rootAttrs"
-		:class="['flex items-center gap-inline', attrs.class]"
+		:class="['flex min-h-11 items-center gap-inline', attrs.class]"
 	>
 		<span
 			aria-hidden="true"

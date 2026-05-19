@@ -57,21 +57,32 @@ function handleSubmit() {
 
 				<form
 					v-if="!submitted"
-					class="mt-panel flex w-full flex-col gap-field md:flex-row md:items-stretch"
+					class="mt-panel flex w-full flex-col gap-field"
 					@submit.prevent="handleSubmit"
 				>
-					<label class="sr-only" for="email">Email</label>
-					<input
-						id="email"
-						ref="emailInputRef"
-						type="email"
-						required
-						placeholder="your@email.com"
-						class="min-h-11 w-full min-w-0 flex-1 rounded-sm border border-line-dark bg-surface-dark px-field py-3 text-text-dark placeholder:text-dim-dark focus:border-accent-dark focus:outline-none"
-					/>
-					<UiFreaqButton type="submit" class="px-panel md:w-auto">
-						ENTER THE CIRCLE
-					</UiFreaqButton>
+					<label
+						class="font-mono text-label font-medium tracking-normal text-dim-dark uppercase"
+						for="email"
+					>
+						Signal address
+					</label>
+					<div
+						class="flex w-full flex-col gap-field md:flex-row md:items-stretch"
+					>
+						<input
+							id="email"
+							ref="emailInputRef"
+							type="email"
+							required
+							autocomplete="email"
+							inputmode="email"
+							placeholder="your@email.com"
+							class="min-h-11 w-full min-w-0 flex-1 rounded-sm border border-line-dark bg-surface-dark px-field py-3 text-text-dark transition-[background-color,border-color,outline-color] duration-200 ease-out placeholder:text-dim-dark hover:border-muted-dark hover:bg-raised-dark focus:border-accent-dark focus:outline-2 focus:outline-offset-4 focus:outline-focus-dark"
+						/>
+						<UiFreaqButton type="submit" class="px-panel md:w-auto">
+							ENTER THE CIRCLE
+						</UiFreaqButton>
+					</div>
 				</form>
 
 				<div
@@ -82,7 +93,7 @@ function handleSubmit() {
 					aria-live="polite"
 				>
 					<div
-						class="signal-stamp-sheet relative overflow-hidden rounded-sm border border-success-dark bg-surface-dark p-field shadow-vessel-edge motion-reduce:animate-none"
+						class="signal-stamp-sheet relative max-w-[52ch] overflow-hidden rounded-sm border border-success-dark bg-surface-dark p-field shadow-vessel-edge motion-reduce:animate-none"
 					>
 						<span
 							class="signal-stamp-dot mr-inline mb-0.5 inline-block size-2 rounded-pill bg-success-dark align-middle motion-reduce:animate-none"

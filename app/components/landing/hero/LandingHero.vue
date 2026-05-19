@@ -78,7 +78,7 @@ function handleHeroPointerDown(event: PointerEvent) {
 		/>
 
 		<div
-			class="relative mx-auto grid max-w-7xl grid-cols-12 gap-field px-field pt-panel pb-panel sm:gap-panel sm:px-panel sm:pt-section sm:pb-section"
+			class="relative mx-auto grid min-h-[calc(100svh-var(--spacing-section))] max-w-7xl grid-cols-12 content-center gap-field px-field pt-panel pb-section sm:gap-panel sm:px-panel sm:pt-section sm:pb-hero"
 		>
 			<LandingHeroReadout ref="readoutRef" />
 			<LandingHeroCopy ref="copyRef" />

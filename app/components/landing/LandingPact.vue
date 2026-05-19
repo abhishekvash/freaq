@@ -9,7 +9,12 @@ type Channel = {
 	body: string;
 };
 
-const channels: readonly Channel[] = [
+type EnvelopePoint = {
+	x: number;
+	y: number;
+};
+
+const channels = [
 	{
 		stamp: "SEALED",
 		stampState: "sealed",
@@ -28,15 +33,20 @@ const channels: readonly Channel[] = [
 		title: "RELEASE.",
 		body: "What you commit goes out as it landed. The circle hears it raw.",
 	},
-] as const;
+] as const satisfies readonly Channel[];
 
-// ADR envelope geometry (viewBox 800x280). No sustain — decay falls through.
+// ADR envelope geometry (viewBox 800x280). No sustain; decay falls through.
 const ENVELOPE_POINTS = [
-	{ x: 40, y: 232 }, // 0 — silence, pre-attack
-	{ x: 220, y: 36 }, // 1 — attack peak (seed lands)
-	{ x: 620, y: 196 }, // 2 — decay end (hour spent)
-	{ x: 760, y: 232 }, // 3 — release silence (bounce printed)
-] as const;
+	{ x: 40, y: 232 }, // 0, silence, pre-attack
+	{ x: 220, y: 36 }, // 1, attack peak (seed lands)
+	{ x: 620, y: 196 }, // 2, decay end (hour spent)
+	{ x: 760, y: 232 }, // 3, release silence (bounce printed)
+] as const satisfies readonly [
+	EnvelopePoint,
+	EnvelopePoint,
+	EnvelopePoint,
+	EnvelopePoint,
+];
 
 const ENVELOPE_PATH = ENVELOPE_POINTS.map(
 	(p, i) => `${i === 0 ? "M" : "L"} ${p.x},${p.y}`
@@ -49,12 +59,26 @@ function segmentLength(
 	return Math.hypot(b.x - a.x, b.y - a.y);
 }
 
-const SEGMENT_LENGTHS = [
-	segmentLength(ENVELOPE_POINTS[0], ENVELOPE_POINTS[1]),
-	segmentLength(ENVELOPE_POINTS[1], ENVELOPE_POINTS[2]),
-	segmentLength(ENVELOPE_POINTS[2], ENVELOPE_POINTS[3]),
-];
-const TOTAL_LENGTH = SEGMENT_LENGTHS.reduce((acc, v) => acc + v, 0);
+const ENVELOPE_SEGMENTS = [
+	{
+		from: ENVELOPE_POINTS[0],
+		to: ENVELOPE_POINTS[1],
+		length: segmentLength(ENVELOPE_POINTS[0], ENVELOPE_POINTS[1]),
+	},
+	{
+		from: ENVELOPE_POINTS[1],
+		to: ENVELOPE_POINTS[2],
+		length: segmentLength(ENVELOPE_POINTS[1], ENVELOPE_POINTS[2]),
+	},
+	{
+		from: ENVELOPE_POINTS[2],
+		to: ENVELOPE_POINTS[3],
+		length: segmentLength(ENVELOPE_POINTS[2], ENVELOPE_POINTS[3]),
+	},
+] as const;
+const TOTAL_LENGTH = ENVELOPE_SEGMENTS.reduce((acc, segment) => {
+	return acc + segment.length;
+}, 0);
 
 // Timing pads let the section settle before attack and hold after release.
 const SCRUB_START_PAD = 0.08;
@@ -65,8 +89,9 @@ const ATTACK_SCROLL_END = 0.18;
 const DECAY_SCROLL_END = 0.82;
 
 // Path-length proportions at each phase boundary.
-const ATTACK_PATH_END = SEGMENT_LENGTHS[0] / TOTAL_LENGTH;
-const DECAY_PATH_END = (SEGMENT_LENGTHS[0] + SEGMENT_LENGTHS[1]) / TOTAL_LENGTH;
+const ATTACK_PATH_END = ENVELOPE_SEGMENTS[0].length / TOTAL_LENGTH;
+const DECAY_PATH_END =
+	(ENVELOPE_SEGMENTS[0].length + ENVELOPE_SEGMENTS[1].length) / TOTAL_LENGTH;
 
 function remapScroll(s: number) {
 	const activeSpan = 1 - SCRUB_START_PAD - SCRUB_END_PAD;
@@ -106,22 +131,25 @@ const activeIndex = computed(() => {
 	return 2;
 });
 
-const activeChannel = computed(() => channels[activeIndex.value]);
+const activeChannel = computed(
+	() => channels[activeIndex.value] ?? channels[0]
+);
 
 const playheadPosition = computed(() => {
 	const target = remappedProgress.value * TOTAL_LENGTH;
 	let acc = 0;
-	for (let i = 0; i < SEGMENT_LENGTHS.length; i++) {
-		const segLen = SEGMENT_LENGTHS[i];
-		if (target <= acc + segLen) {
-			const t = segLen === 0 ? 0 : (target - acc) / segLen;
-			const a = ENVELOPE_POINTS[i];
-			const b = ENVELOPE_POINTS[i + 1];
-			return { x: a.x + (b.x - a.x) * t, y: a.y + (b.y - a.y) * t };
+	for (const segment of ENVELOPE_SEGMENTS) {
+		if (target <= acc + segment.length) {
+			const t =
+				segment.length === 0 ? 0 : (target - acc) / segment.length;
+			return {
+				x: segment.from.x + (segment.to.x - segment.from.x) * t,
+				y: segment.from.y + (segment.to.y - segment.from.y) * t,
+			};
 		}
-		acc += segLen;
+		acc += segment.length;
 	}
-	return ENVELOPE_POINTS[ENVELOPE_POINTS.length - 1];
+	return ENVELOPE_POINTS[3];
 });
 
 const dashOffset = computed(() => TOTAL_LENGTH * (1 - remappedProgress.value));
@@ -374,16 +402,16 @@ onMounted(() => {
 }
 
 .pact-track[data-mode="scrub"] {
-	min-height: 253vh;
-	padding-bottom: 18vh;
+	min-height: 238vh;
+	padding-bottom: 14vh;
 }
 
 .pact-stage {
 	position: sticky;
-	top: 4.5rem;
+	top: var(--spacing-section);
 	display: flex;
 	align-items: center;
-	min-height: calc(82vh - 4.5rem);
+	min-height: calc(82vh - var(--spacing-section));
 	padding-block: var(--spacing-panel);
 }
 
@@ -444,7 +472,7 @@ onMounted(() => {
 	font-family: var(--font-mono);
 	font-size: var(--text-label);
 	font-weight: 700;
-	letter-spacing: 0.16em;
+	letter-spacing: 0;
 	text-transform: uppercase;
 	color: var(--freaq-muted);
 }
@@ -514,7 +542,7 @@ onMounted(() => {
 	font-family: var(--font-mono);
 	font-size: var(--text-label);
 	font-weight: 700;
-	letter-spacing: 0.18em;
+	letter-spacing: 0;
 	color: var(--freaq-muted);
 	font-variant-numeric: tabular-nums;
 	text-transform: uppercase;

@@ -21,26 +21,26 @@ addRevealTarget(() => bodyRef.value, { delay: 0.22, y: 18 });
 			<p class="font-display font-bold tracking-normal uppercase">
 				<span
 					ref="line1Ref"
-					class="block text-stagger-1 text-muted-dark"
+					class="landing-motion-hidden block text-stagger-1 text-muted-dark motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100"
 				>
 					The hand
 				</span>
 				<span
 					ref="line2Ref"
-					class="block pl-[0.6em] text-stagger-2 text-text-dark"
+					class="landing-motion-hidden block pl-[0.6em] text-stagger-2 text-text-dark motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100"
 				>
 					stays in
 				</span>
 				<span
 					ref="line3Ref"
-					class="block pl-[1.4em] text-stagger-3 text-accent-dark"
+					class="landing-motion-hidden block pl-[1.4em] text-stagger-3 text-accent-dark motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100"
 				>
 					the machine.
 				</span>
 			</p>
 			<p
 				ref="bodyRef"
-				class="mt-section ml-auto max-w-[44ch] text-body text-muted-dark sm:text-right"
+				class="landing-motion-hidden mt-section ml-auto max-w-[44ch] text-body text-muted-dark motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100 sm:text-right"
 			>
 				Freaq gives producers a focused circle, a real constraint, and a
 				reason to finish the idea while it still has voltage.

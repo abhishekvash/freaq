@@ -18,6 +18,7 @@ type LandingHeroCopyExpose = {
 };
 
 type LandingHeroReadoutExpose = {
+	readoutRef: HTMLElement | undefined;
 	bracketRef: HTMLElement | undefined;
 	seg1Ref: HTMLElement | undefined;
 	seg2Ref: HTMLElement | undefined;
@@ -36,6 +37,7 @@ const { canvasReady, pulse, setupCanvas } = useLandingHeroCanvas(
 
 useLandingHeroIntro(
 	{
+		readoutRef: computed(() => readoutRef.value?.readoutRef),
 		bracketRef: computed(() => readoutRef.value?.bracketRef),
 		seg1Ref: computed(() => readoutRef.value?.seg1Ref),
 		seg2Ref: computed(() => readoutRef.value?.seg2Ref),

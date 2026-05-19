@@ -71,10 +71,7 @@ async function revealElement(
 	if (prefersReducedMotion) return;
 
 	const { animate, inView } = await import("motion");
-	const y = options.y ?? 22;
 
-	element.style.opacity = "0";
-	element.style.transform = `translate3d(0, ${y}px, 0)`;
 	element.style.willChange = "opacity, transform";
 
 	inView(
@@ -92,6 +89,7 @@ async function revealElement(
 
 			return () => {
 				element.style.willChange = "";
+				element.style.transform = "none";
 			};
 		},
 		{ amount: 0.18 }

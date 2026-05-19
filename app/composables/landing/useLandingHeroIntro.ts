@@ -6,6 +6,7 @@ export const LANDING_HERO_READOUT_TEXT = {
 
 type LandingHeroIntroRefs = {
 	bodyRef: Readonly<Ref<HTMLElement | undefined>>;
+	readoutRef: Readonly<Ref<HTMLElement | undefined>>;
 	bracketRef: Readonly<Ref<HTMLElement | undefined>>;
 	line1Ref: Readonly<Ref<HTMLElement | undefined>>;
 	line2Ref: Readonly<Ref<HTMLElement | undefined>>;
@@ -31,16 +32,10 @@ export function useLandingHeroIntro(
 		}
 
 		options.setupCanvas();
-		[refs.line1Ref, refs.line2Ref, refs.line3Ref, refs.bodyRef].forEach(
-			(r) => {
-				if (!r.value) return;
-				r.value.style.opacity = "0";
-				r.value.style.transform = "translateY(0.6em)";
-			}
-		);
 		[refs.seg1Ref, refs.seg2Ref, refs.seg3Ref].forEach((r) => {
 			if (r.value) r.value.textContent = "";
 		});
+		showElement(refs.readoutRef.value);
 
 		const [motionMod, gsapMod] = await Promise.all([
 			import("motion"),
@@ -144,9 +139,19 @@ export function useLandingHeroIntro(
 }
 
 function setStaggerFinal(refs: LandingHeroIntroRefs) {
-	[refs.line1Ref, refs.line2Ref, refs.line3Ref, refs.bodyRef].forEach((r) => {
-		if (!r.value) return;
-		r.value.style.opacity = "1";
-		r.value.style.transform = "none";
+	[
+		refs.readoutRef,
+		refs.line1Ref,
+		refs.line2Ref,
+		refs.line3Ref,
+		refs.bodyRef,
+	].forEach((r) => {
+		showElement(r.value);
 	});
+}
+
+function showElement(element: HTMLElement | undefined) {
+	if (!element) return;
+	element.style.opacity = "1";
+	element.style.transform = "none";
 }

@@ -42,7 +42,7 @@ revealList(
 		<div class="mx-auto max-w-7xl px-panel pt-hero pb-hero">
 			<h2
 				ref="headerRef"
-				class="max-w-[20ch] font-display text-title font-bold tracking-normal text-text-dark uppercase"
+				class="landing-motion-hidden max-w-[20ch] font-display text-title font-bold tracking-normal text-text-dark uppercase motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100"
 			>
 				THE IDEA.
 				<span class="text-accent-dark">CONSTRAINT AS INSTRUMENT.</span>
@@ -53,7 +53,7 @@ revealList(
 					v-for="(item, i) in pact"
 					:key="item.n"
 					:ref="setPactItemRef(i)"
-					class="pact-row group grid grid-cols-12 gap-panel py-panel first:pt-0 sm:py-section"
+					class="pact-row landing-motion-hidden group grid grid-cols-12 gap-panel py-panel first:pt-0 motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100 sm:py-section"
 				>
 					<span
 						class="col-span-12 font-mono text-stagger-2 leading-[0.85] font-bold text-muted-dark tabular-nums transition-[color,text-shadow] duration-300 ease-out group-focus-within:text-accent-dark group-hover:text-accent-dark group-hover:shadow-redline motion-reduce:transition-none sm:col-span-3"

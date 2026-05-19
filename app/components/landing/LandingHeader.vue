@@ -3,10 +3,10 @@
 		<div
 			class="mx-auto flex max-w-7xl items-center justify-between gap-panel px-panel py-field"
 		>
-			<FreaqBrand href="#top" />
-			<FreaqButton href="#join" variant="secondary">
+			<UiFreaqBrand href="#top" />
+			<UiFreaqButton href="#join" variant="secondary">
 				ENTER THE CIRCLE
-			</FreaqButton>
+			</UiFreaqButton>
 		</div>
 	</header>
 </template>

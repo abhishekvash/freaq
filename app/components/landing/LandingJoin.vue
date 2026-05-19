@@ -22,10 +22,13 @@ function handleSubmit() {
 		<div
 			class="mx-auto grid max-w-7xl grid-cols-12 gap-panel px-panel py-hero"
 		>
-			<div ref="titleRef" class="col-span-12 lg:col-span-6">
-				<FreaqReadout class="text-muted-dark">
+			<div
+				ref="titleRef"
+				class="landing-motion-hidden col-span-12 motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100 lg:col-span-6"
+			>
+				<UiFreaqReadout class="text-muted-dark">
 					OPEN CALL · FIRST CIRCLE
-				</FreaqReadout>
+				</UiFreaqReadout>
 				<h2
 					class="mt-field font-display text-headline font-bold tracking-normal text-text-dark uppercase"
 				>
@@ -35,7 +38,7 @@ function handleSubmit() {
 
 			<div
 				ref="formRef"
-				class="col-span-12 mt-section lg:col-span-6 lg:col-start-7 lg:mt-0 lg:self-end lg:border-l lg:border-line-dark lg:pl-panel"
+				class="landing-motion-hidden col-span-12 mt-section motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100 lg:col-span-6 lg:col-start-7 lg:mt-0 lg:self-end lg:border-l lg:border-line-dark lg:pl-panel"
 			>
 				<div
 					v-if="!submitted"
@@ -66,9 +69,9 @@ function handleSubmit() {
 						placeholder="your@email.com"
 						class="min-h-11 flex-1 rounded-sm border border-line-dark bg-surface-dark px-field py-3 text-text-dark placeholder:text-dim-dark focus:border-accent-dark focus:outline-none"
 					/>
-					<FreaqButton type="submit" class="px-panel">
+					<UiFreaqButton type="submit" class="px-panel">
 						ENTER THE CIRCLE
-					</FreaqButton>
+					</UiFreaqButton>
 				</form>
 
 				<div

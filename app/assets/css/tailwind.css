@@ -152,6 +152,11 @@
 		outline: 2px solid var(--freaq-focus);
 		outline-offset: 3px;
 	}
+
+	html:not(.js) .landing-motion-hidden {
+		opacity: 1 !important;
+		transform: none !important;
+	}
 }
 
 @property --landing-hero-scan-x {

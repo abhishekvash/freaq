@@ -36,7 +36,7 @@ const variantClass = computed(() => {
 		v-bind="rootAttrs"
 		:href="href"
 		:class="[
-			'inline-flex min-h-11 items-center justify-center gap-inline rounded-sm border px-field py-3 font-mono text-label font-medium tracking-normal uppercase',
+			'inline-flex min-h-11 items-center justify-center gap-inline rounded-sm border px-field py-3 font-mono text-label font-extrabold tracking-normal uppercase',
 			variantClass,
 			attrs.class,
 		]"
@@ -48,7 +48,7 @@ const variantClass = computed(() => {
 		v-bind="rootAttrs"
 		:type="type"
 		:class="[
-			'inline-flex min-h-11 items-center justify-center gap-inline rounded-sm border px-field py-3 font-mono text-label font-medium tracking-normal uppercase',
+			'inline-flex min-h-11 items-center justify-center gap-inline rounded-sm border px-field py-3 font-mono text-label font-extrabold tracking-normal uppercase',
 			variantClass,
 			attrs.class,
 		]"

@@ -149,7 +149,7 @@
 	}
 }
 
-@property --vault-scan-x {
+@property --landing-hero-scan-x {
 	syntax: "<percentage>";
 	inherits: false;
 	initial-value: -10%;

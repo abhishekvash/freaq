@@ -4,12 +4,17 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
 	compatibilityDate: "2025-07-15",
 	devtools: { enabled: true },
-	modules: ["@nuxt/eslint"],
+	modules: ["@nuxt/eslint", "nuxt-skill-hub"],
 	css: ["~/assets/css/tailwind.css"],
 	vite: {
-		server: {
-			allowedHosts: ["app.abhishekvash.xyz"],
-		},
 		plugins: [tailwindcss()],
+	},
+	imports: {
+		dirs: ["~/composables/**"],
+	},
+	skillHub: {
+		targets: ["claude-code", "codex"],
+		generationMode: "prepare",
+		eslint: false,
 	},
 });

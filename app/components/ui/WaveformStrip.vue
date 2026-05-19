@@ -1,6 +1,5 @@
 <script setup lang="ts">
-import { computed } from "vue";
-
+import { createWaveEnvelope } from "~/utils/waveform";
 const props = withDefaults(
 	defineProps<{
 		height?: number;
@@ -16,33 +15,8 @@ const props = withDefaults(
 	}
 );
 
-function mulberry32(a: number) {
-	return function () {
-		let t = (a += 0x6d2b79f5);
-		t = Math.imul(t ^ (t >>> 15), t | 1);
-		t ^= t + Math.imul(t ^ (t >>> 7), t | 61);
-		return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-	};
-}
-
 const points = computed(() => {
-	const rand = mulberry32(props.seed);
-	const n = props.density;
-	const result: number[] = [];
-	for (let i = 0; i < n; i++) {
-		const x = i / (n - 1);
-		const breath =
-			0.55 +
-			0.45 * Math.sin(x * Math.PI * 3.7) * Math.cos(x * Math.PI * 1.3);
-		const noise = (rand() - 0.5) * 0.42;
-		const tail = 1 - Math.pow(Math.abs(x - 0.5) * 2, 2.6);
-		const v = Math.max(
-			0.04,
-			Math.min(1, Math.abs(breath + noise) * Math.max(0.2, tail))
-		);
-		result.push(v);
-	}
-	return result;
+	return createWaveEnvelope({ density: props.density, seed: props.seed });
 });
 
 const top = computed(() => {

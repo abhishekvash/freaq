@@ -16,7 +16,7 @@ defineExpose({
 
 <template>
 	<h1
-		class="col-span-12 mt-field font-display text-headline font-bold tracking-normal text-text-dark uppercase lg:col-span-9"
+		class="col-span-12 mt-field max-w-[11ch] font-display text-headline font-bold tracking-normal text-text-dark uppercase lg:col-span-9 lg:max-w-none"
 	>
 		<span
 			ref="line1Ref"
@@ -45,7 +45,7 @@ defineExpose({
 
 	<div
 		ref="bodyRef"
-		class="landing-hero-body landing-motion-hidden col-span-12 mt-section motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100 lg:col-span-7"
+		class="landing-hero-body landing-motion-hidden col-span-12 mt-panel motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100 sm:mt-section lg:col-span-7"
 	>
 		<p class="max-w-[58ch] text-body text-muted-dark">
 			Freaq is for music producers who want a deadline that bites. Every
@@ -53,9 +53,13 @@ defineExpose({
 			The circle hears it as it landed.
 		</p>
 
-		<div class="mt-panel flex flex-wrap items-center gap-field">
-			<UiFreaqButton href="#join">ENTER THE CIRCLE</UiFreaqButton>
-			<UiFreaqReadout class="text-accent-dark">
+		<div
+			class="mt-panel flex flex-col items-stretch gap-field sm:flex-row sm:flex-wrap sm:items-center"
+		>
+			<UiFreaqButton href="#join" class="sm:w-auto">
+				ENTER THE CIRCLE
+			</UiFreaqButton>
+			<UiFreaqReadout class="text-accent-dark sm:ml-inline">
 				· FIRST CIRCLE FORMING
 			</UiFreaqReadout>
 		</div>

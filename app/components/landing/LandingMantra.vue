@@ -17,7 +17,9 @@ addRevealTarget(() => bodyRef.value, { delay: 0.22, y: 18 });
 	<section
 		class="border-t border-line-dark bg-raised-dark shadow-vessel-edge"
 	>
-		<div class="mx-auto max-w-7xl px-panel py-hero">
+		<div
+			class="mx-auto max-w-7xl overflow-hidden px-field py-section sm:px-panel sm:py-hero"
+		>
 			<p class="font-display font-bold tracking-normal uppercase">
 				<span
 					ref="line1Ref"
@@ -27,20 +29,20 @@ addRevealTarget(() => bodyRef.value, { delay: 0.22, y: 18 });
 				</span>
 				<span
 					ref="line2Ref"
-					class="landing-motion-hidden block pl-[0.6em] text-stagger-2 text-text-dark motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100"
+					class="landing-motion-hidden block pl-field text-stagger-2 text-text-dark motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100 sm:pl-panel"
 				>
 					stays in
 				</span>
 				<span
 					ref="line3Ref"
-					class="landing-motion-hidden block pl-[1.4em] text-stagger-3 text-accent-dark motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100"
+					class="landing-motion-hidden block pl-panel text-stagger-3 text-accent-dark motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100 sm:pl-section"
 				>
 					the machine.
 				</span>
 			</p>
 			<p
 				ref="bodyRef"
-				class="landing-motion-hidden mt-section ml-auto max-w-[44ch] text-body text-muted-dark motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100 sm:text-right"
+				class="landing-motion-hidden mt-panel ml-auto max-w-[44ch] text-body text-muted-dark motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100 sm:mt-section sm:text-right"
 			>
 				Freaq gives producers a focused circle, a real constraint, and a
 				reason to finish the idea while it still has voltage.

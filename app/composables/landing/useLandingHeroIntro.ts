@@ -4,6 +4,8 @@ export const LANDING_HERO_READOUT_TEXT = {
 	seg3: " // CIRCLE FORMING",
 } as const;
 
+export const LANDING_HERO_INTRO_COMPLETE_DELAY = 1.72;
+
 type LandingHeroIntroRefs = {
 	bodyRef: Readonly<Ref<HTMLElement | undefined>>;
 	readoutRef: Readonly<Ref<HTMLElement | undefined>>;
@@ -132,7 +134,7 @@ export function useLandingHeroIntro(
 			tl.to(
 				refs.bodyRef.value,
 				{ opacity: 1, y: 0, duration: 0.32, ease: "power2.out" },
-				1.46
+				LANDING_HERO_INTRO_COMPLETE_DELAY - 0.26
 			);
 		}
 	});

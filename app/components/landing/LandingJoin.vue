@@ -20,7 +20,7 @@ function handleSubmit() {
 <template>
 	<section id="join" class="border-t border-line-dark">
 		<div
-			class="mx-auto grid max-w-7xl grid-cols-12 gap-panel px-panel py-hero"
+			class="mx-auto grid max-w-7xl grid-cols-12 gap-field px-field py-section sm:gap-panel sm:px-panel sm:py-hero"
 		>
 			<div
 				ref="titleRef"
@@ -38,7 +38,7 @@ function handleSubmit() {
 
 			<div
 				ref="formRef"
-				class="landing-motion-hidden col-span-12 mt-section motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100 lg:col-span-6 lg:col-start-7 lg:mt-0 lg:self-end lg:border-l lg:border-line-dark lg:pl-panel"
+				class="landing-motion-hidden col-span-12 mt-panel motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100 sm:mt-section lg:col-span-6 lg:col-start-7 lg:mt-0 lg:self-end lg:border-l lg:border-line-dark lg:pl-panel"
 			>
 				<div
 					v-if="!submitted"
@@ -57,7 +57,7 @@ function handleSubmit() {
 
 				<form
 					v-if="!submitted"
-					class="mt-panel flex w-full flex-col gap-field sm:flex-row sm:items-stretch"
+					class="mt-panel flex w-full flex-col gap-field md:flex-row md:items-stretch"
 					@submit.prevent="handleSubmit"
 				>
 					<label class="sr-only" for="email">Email</label>
@@ -67,9 +67,9 @@ function handleSubmit() {
 						type="email"
 						required
 						placeholder="your@email.com"
-						class="min-h-11 flex-1 rounded-sm border border-line-dark bg-surface-dark px-field py-3 text-text-dark placeholder:text-dim-dark focus:border-accent-dark focus:outline-none"
+						class="min-h-11 w-full min-w-0 flex-1 rounded-sm border border-line-dark bg-surface-dark px-field py-3 text-text-dark placeholder:text-dim-dark focus:border-accent-dark focus:outline-none"
 					/>
-					<UiFreaqButton type="submit" class="px-panel">
+					<UiFreaqButton type="submit" class="px-panel md:w-auto">
 						ENTER THE CIRCLE
 					</UiFreaqButton>
 				</form>

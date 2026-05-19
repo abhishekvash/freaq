@@ -3,6 +3,7 @@ import {
 	useElementListRefs,
 	useLandingReveal,
 } from "~/composables/landing/useLandingReveal";
+import { LANDING_HERO_INTRO_COMPLETE_DELAY } from "~/composables/landing/useLandingHeroIntro";
 
 const pact = [
 	{
@@ -27,19 +28,27 @@ const { elements: pactItemRefs, setElementRef: setPactItemRef } =
 	useElementListRefs();
 const { addRevealTarget, revealList } = useLandingReveal();
 
-addRevealTarget(() => headerRef.value, { y: 18 });
+addRevealTarget(() => headerRef.value, {
+	delay: LANDING_HERO_INTRO_COMPLETE_DELAY,
+	delayFromMount: true,
+	y: 18,
+});
 revealList(
 	() => pactItemRefs.value,
 	(index) => ({
-		delay: index * 0.06,
-		y: 24,
+		delay: LANDING_HERO_INTRO_COMPLETE_DELAY + 0.02 + index * 0.04,
+		delayFromMount: true,
+		duration: 0.36,
+		y: 14,
 	})
 );
 </script>
 
 <template>
 	<section id="pact">
-		<div class="mx-auto max-w-7xl px-panel pt-hero pb-hero">
+		<div
+			class="mx-auto max-w-7xl px-field pt-section pb-section sm:px-panel sm:pt-hero sm:pb-hero"
+		>
 			<h2
 				ref="headerRef"
 				class="landing-motion-hidden max-w-[20ch] font-display text-title font-bold tracking-normal text-text-dark uppercase motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100"
@@ -48,15 +57,15 @@ revealList(
 				<span class="text-accent-dark">CONSTRAINT AS INSTRUMENT.</span>
 			</h2>
 
-			<ol class="mt-section divide-y divide-line-dark">
+			<ol class="mt-panel divide-y divide-line-dark sm:mt-section">
 				<li
 					v-for="(item, i) in pact"
 					:key="item.n"
 					:ref="setPactItemRef(i)"
-					class="pact-row landing-motion-hidden group grid grid-cols-12 gap-panel py-panel first:pt-0 motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100 sm:py-section"
+					class="pact-row landing-motion-hidden group grid grid-cols-12 gap-field py-panel first:pt-0 motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100 sm:gap-panel sm:py-section"
 				>
 					<span
-						class="col-span-12 font-mono text-stagger-2 leading-[0.85] font-bold text-muted-dark tabular-nums transition-[color,text-shadow] duration-300 ease-out group-focus-within:text-accent-dark group-hover:text-accent-dark group-hover:shadow-redline motion-reduce:transition-none sm:col-span-3"
+						class="col-span-12 font-mono text-stagger-1 leading-[0.85] font-bold text-muted-dark tabular-nums transition-[color,text-shadow] duration-300 ease-out group-focus-within:text-accent-dark group-hover:text-accent-dark group-hover:shadow-redline motion-reduce:transition-none sm:col-span-3 sm:text-stagger-2"
 					>
 						{{ item.n }}
 					</span>

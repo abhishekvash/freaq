@@ -2,10 +2,10 @@
 import { useLandingReveal } from "~/composables/landing/useLandingReveal";
 
 const submitted = shallowRef(false);
-const emailInputRef = ref<HTMLInputElement | null>(null);
-const stampRef = ref<HTMLElement | null>(null);
-const titleRef = ref<HTMLElement | null>(null);
-const formRef = ref<HTMLElement | null>(null);
+const emailInputRef = ref<HTMLInputElement>();
+const stampRef = ref<HTMLElement>();
+const titleRef = ref<HTMLElement>();
+const formRef = ref<HTMLElement>();
 const { addRevealTarget } = useLandingReveal();
 
 addRevealTarget(() => titleRef.value, { y: 22 });
@@ -74,21 +74,35 @@ function handleSubmit() {
 				<div
 					v-else
 					ref="stampRef"
-					class="signal-stamp mt-panel"
+					class="mt-panel"
 					role="status"
 					aria-live="polite"
 				>
-					<div class="signal-stamp__sheet">
-						<span class="signal-stamp__dot" aria-hidden="true" />
-						<p class="signal-stamp__head">&gt; SIGNAL LOCKED.</p>
-						<p class="signal-stamp__line">
+					<div
+						class="signal-stamp-sheet relative overflow-hidden rounded-sm border border-success-dark bg-surface-dark p-field shadow-vessel-edge motion-reduce:animate-none"
+					>
+						<span
+							class="signal-stamp-dot mr-inline mb-0.5 inline-block size-2 rounded-pill bg-success-dark align-middle motion-reduce:animate-none"
+							aria-hidden="true"
+						/>
+						<p
+							class="inline font-mono text-label font-semibold tracking-normal text-success-dark uppercase"
+						>
+							&gt; SIGNAL LOCKED.
+						</p>
+						<p
+							class="mt-inline font-mono text-label leading-normal tracking-normal text-text-dark uppercase"
+						>
 							WATCH
-							<span class="signal-stamp__addr"
+							<span class="text-success-dark normal-case"
 								>signal@freaq.club</span
 							>
 							FOR THE FIRST CALL.
 						</p>
-						<span class="signal-stamp__scan" aria-hidden="true" />
+						<span
+							class="signal-stamp-scan pointer-events-none absolute inset-0 mix-blend-screen motion-reduce:hidden"
+							aria-hidden="true"
+						/>
 					</div>
 				</div>
 			</div>
@@ -97,67 +111,16 @@ function handleSubmit() {
 </template>
 
 <style scoped>
-.signal-stamp {
-	--stamp-color: var(--freaq-success);
-}
-
-.signal-stamp__sheet {
-	position: relative;
-	overflow: hidden;
-	padding: 18px 20px 20px;
-	border: 1px solid var(--stamp-color);
-	border-radius: 4px;
-	background: color-mix(
-		in oklab,
-		var(--stamp-color) 8%,
-		var(--freaq-surface)
-	);
-	box-shadow: inset 0 1px 0 rgba(232, 226, 216, 0.06);
+.signal-stamp-sheet {
 	animation: stamp-in 520ms cubic-bezier(0.22, 1, 0.36, 1) both;
 }
 
-.signal-stamp__dot {
-	display: inline-block;
-	width: 7px;
-	height: 7px;
-	margin-right: 10px;
-	margin-bottom: 2px;
-	border-radius: 999px;
-	background: var(--stamp-color);
-	box-shadow: 0 0 12px var(--stamp-color);
+.signal-stamp-dot {
+	box-shadow: 0 0 12px var(--freaq-success);
 	animation: stamp-dot 1.8s ease-in-out infinite;
-	vertical-align: middle;
 }
 
-.signal-stamp__head {
-	display: inline;
-	color: var(--stamp-color);
-	font-family: var(--font-mono);
-	font-size: 0.82rem;
-	font-weight: 600;
-	letter-spacing: 0.04em;
-	text-transform: uppercase;
-}
-
-.signal-stamp__line {
-	margin-top: 10px;
-	color: var(--freaq-text);
-	font-family: var(--font-mono);
-	font-size: 0.82rem;
-	line-height: 1.55;
-	letter-spacing: 0.02em;
-	text-transform: uppercase;
-}
-
-.signal-stamp__addr {
-	color: var(--stamp-color);
-	text-transform: none;
-}
-
-.signal-stamp__scan {
-	position: absolute;
-	inset: 0;
-	pointer-events: none;
+.signal-stamp-scan {
 	background: linear-gradient(
 		90deg,
 		transparent 0%,
@@ -168,7 +131,6 @@ function handleSubmit() {
 	);
 	transform: translateX(-110%);
 	animation: stamp-scan 720ms cubic-bezier(0.22, 1, 0.36, 1) 140ms both;
-	mix-blend-mode: screen;
 }
 
 @keyframes stamp-in {
@@ -195,25 +157,11 @@ function handleSubmit() {
 	0%,
 	100% {
 		opacity: 0.55;
-		box-shadow: 0 0 6px var(--stamp-color);
+		box-shadow: 0 0 6px var(--freaq-success);
 	}
 	50% {
 		opacity: 1;
-		box-shadow: 0 0 14px var(--stamp-color);
-	}
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.signal-stamp__sheet,
-	.signal-stamp__scan,
-	.signal-stamp__dot {
-		transition: none !important;
-		animation: none !important;
-		transform: none !important;
-	}
-
-	.signal-stamp__scan {
-		display: none;
+		box-shadow: 0 0 14px var(--freaq-success);
 	}
 }
 </style>

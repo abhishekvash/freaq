@@ -51,6 +51,11 @@
 	--text-title--font-weight: 700;
 	--text-title--letter-spacing: 0;
 
+	--text-subtitle: clamp(1.7rem, 3vw, 2.6rem);
+	--text-subtitle--line-height: 0.95;
+	--text-subtitle--font-weight: 700;
+	--text-subtitle--letter-spacing: 0;
+
 	--text-body: 1rem;
 	--text-body--line-height: 1.62;
 	--text-body--font-weight: 400;

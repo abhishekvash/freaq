@@ -1,13 +1,13 @@
-interface RevealOptions {
+type RevealOptions = {
 	delay?: number;
 	duration?: number;
 	y?: number;
-}
+};
 
-interface RevealTarget {
-	element: () => HTMLElement | null;
+type RevealTarget = {
+	element: () => HTMLElement | undefined;
 	options?: RevealOptions;
-}
+};
 
 const easeOutQuart: [number, number, number, number] = [0.22, 1, 0.36, 1];
 
@@ -15,7 +15,7 @@ export function useLandingReveal() {
 	const targets: RevealTarget[] = [];
 
 	function addRevealTarget(
-		element: () => HTMLElement | null,
+		element: () => HTMLElement | undefined,
 		options?: RevealOptions
 	) {
 		targets.push({ element, options });
@@ -48,7 +48,7 @@ export function useElementListRefs() {
 	const elements = ref<HTMLElement[]>([]);
 
 	function setElementRef(index: number) {
-		return (el: Element | ComponentPublicInstance | null) => {
+		return (el: unknown) => {
 			if (el instanceof HTMLElement) elements.value[index] = el;
 		};
 	}
@@ -60,7 +60,7 @@ export function useElementListRefs() {
 }
 
 async function revealElement(
-	element: HTMLElement | null,
+	element: HTMLElement | undefined,
 	options: RevealOptions = {}
 ) {
 	if (!element || typeof window === "undefined") return;

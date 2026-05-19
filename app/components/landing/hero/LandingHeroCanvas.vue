@@ -6,7 +6,7 @@ defineProps<{
 }>();
 
 const staticWave = createHeroStaticWave();
-const canvasRef = ref<HTMLCanvasElement | null>(null);
+const canvasRef = ref<HTMLCanvasElement>();
 
 defineExpose({
 	canvasRef,
@@ -18,8 +18,8 @@ defineExpose({
 		ref="canvasRef"
 		aria-hidden="true"
 		:class="[
-			'landing-hero-canvas pointer-events-none absolute inset-0',
-			canvasReady && 'landing-hero-canvas--ready',
+			'pointer-events-none absolute inset-0 h-full w-full opacity-0 transition-opacity duration-300 ease-out',
+			canvasReady && 'opacity-100',
 		]"
 	/>
 	<svg
@@ -27,8 +27,8 @@ defineExpose({
 		preserveAspectRatio="none"
 		aria-hidden="true"
 		:class="[
-			'landing-hero-static-wave pointer-events-none absolute inset-0 h-full w-full',
-			canvasReady && 'landing-hero-static-wave--gone',
+			'pointer-events-none absolute inset-0 h-full w-full transition-opacity duration-300 ease-out',
+			canvasReady && 'opacity-0',
 		]"
 	>
 		<line
@@ -57,24 +57,3 @@ defineExpose({
 		/>
 	</svg>
 </template>
-
-<style scoped>
-.landing-hero-canvas {
-	width: 100%;
-	height: 100%;
-	opacity: 0;
-	transition: opacity 320ms ease-out;
-}
-
-.landing-hero-canvas--ready {
-	opacity: 1;
-}
-
-.landing-hero-static-wave {
-	transition: opacity 320ms ease-out;
-}
-
-.landing-hero-static-wave--gone {
-	opacity: 0;
-}
-</style>

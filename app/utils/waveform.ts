@@ -1,15 +1,15 @@
-export interface WaveEnvelopeOptions {
+export type WaveEnvelopeOptions = {
 	density: number;
 	seed: number;
-}
+};
 
-export interface StaticWave {
+export type StaticWave = {
 	bot: string;
 	centerY: number;
 	top: string;
 	viewBox: string;
 	width: number;
-}
+};
 
 export function createSeededRandom(seed: number) {
 	let value = seed;

@@ -1,10 +1,10 @@
 <script setup lang="ts">
 import { useLandingReveal } from "~/composables/landing/useLandingReveal";
 
-const line1Ref = ref<HTMLElement | null>(null);
-const line2Ref = ref<HTMLElement | null>(null);
-const line3Ref = ref<HTMLElement | null>(null);
-const bodyRef = ref<HTMLElement | null>(null);
+const line1Ref = ref<HTMLElement>();
+const line2Ref = ref<HTMLElement>();
+const line3Ref = ref<HTMLElement>();
+const bodyRef = ref<HTMLElement>();
 const { addRevealTarget } = useLandingReveal();
 
 addRevealTarget(() => line1Ref.value, { y: 26 });

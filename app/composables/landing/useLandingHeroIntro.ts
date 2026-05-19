@@ -4,17 +4,17 @@ export const LANDING_HERO_READOUT_TEXT = {
 	seg3: " // CIRCLE FORMING",
 } as const;
 
-interface LandingHeroIntroRefs {
-	bodyRef: Readonly<Ref<HTMLElement | null>>;
-	bracketRef: Readonly<Ref<HTMLElement | null>>;
-	line1Ref: Readonly<Ref<HTMLElement | null>>;
-	line2Ref: Readonly<Ref<HTMLElement | null>>;
-	line3Ref: Readonly<Ref<HTMLElement | null>>;
-	scanlineRef: Readonly<Ref<HTMLElement | null>>;
-	seg1Ref: Readonly<Ref<HTMLElement | null>>;
-	seg2Ref: Readonly<Ref<HTMLElement | null>>;
-	seg3Ref: Readonly<Ref<HTMLElement | null>>;
-}
+type LandingHeroIntroRefs = {
+	bodyRef: Readonly<Ref<HTMLElement | undefined>>;
+	bracketRef: Readonly<Ref<HTMLElement | undefined>>;
+	line1Ref: Readonly<Ref<HTMLElement | undefined>>;
+	line2Ref: Readonly<Ref<HTMLElement | undefined>>;
+	line3Ref: Readonly<Ref<HTMLElement | undefined>>;
+	scanlineRef: Readonly<Ref<HTMLElement | undefined>>;
+	seg1Ref: Readonly<Ref<HTMLElement | undefined>>;
+	seg2Ref: Readonly<Ref<HTMLElement | undefined>>;
+	seg3Ref: Readonly<Ref<HTMLElement | undefined>>;
+};
 
 export function useLandingHeroIntro(
 	refs: LandingHeroIntroRefs,
@@ -120,22 +120,26 @@ export function useLandingHeroIntro(
 			}
 		}, 1.04);
 
-		tl.fromTo(
-			refs.scanlineRef.value,
-			{ "--landing-hero-scan-x": "-10%" },
-			{
-				"--landing-hero-scan-x": "110%",
-				duration: 0.6,
-				ease: "expo.out",
-			},
-			1.26
-		);
+		if (refs.scanlineRef.value) {
+			tl.fromTo(
+				refs.scanlineRef.value,
+				{ "--landing-hero-scan-x": "-10%" },
+				{
+					"--landing-hero-scan-x": "110%",
+					duration: 0.6,
+					ease: "expo.out",
+				},
+				1.26
+			);
+		}
 
-		tl.to(
-			refs.bodyRef.value,
-			{ opacity: 1, y: 0, duration: 0.32, ease: "power2.out" },
-			1.46
-		);
+		if (refs.bodyRef.value) {
+			tl.to(
+				refs.bodyRef.value,
+				{ opacity: 1, y: 0, duration: 0.32, ease: "power2.out" },
+				1.46
+			);
+		}
 	});
 }
 

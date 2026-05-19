@@ -27,7 +27,7 @@ Nuxt 4 uses `app/` (not `src/`) as the source root — this is the v4 default an
 - Do not use hardcoded one-off values in Tailwind classes unless the existing token scale cannot express the design and you have first checked `app/assets/css/tailwind.css`.
 - If custom CSS is unavoidable for a one-off view/component, first try creating a class with @apply and tailwind tokens and then resort to vanilla CSS. Put it in a scoped `<style scoped>` block inside that Vue file. Shared CSS belongs in `app/assets/css/tailwind.css` only when it is truly a reusable token, theme value, or base rule.
 - When stacking context is involved, use `isolate` on the parent. Do not use runaway z-index values.
-- If you truly need to resort to CSS over tailwind classes directly,
+- For animation, prefer Motion first, CSS second, and GSAP last. Use CSS for simple transitions, reduced-motion-safe keyframes, and pseudo-element effects; use GSAP only when timeline/plugin control is necessary.
 
 ### Adding a new design token
 

@@ -5,30 +5,30 @@ import LandingHeroReadout from "~/components/landing/hero/LandingHeroReadout.vue
 import { useLandingHeroCanvas } from "~/composables/landing/useLandingHeroCanvas";
 import { useLandingHeroIntro } from "~/composables/landing/useLandingHeroIntro";
 
-interface LandingHeroCanvasExpose {
-	canvasRef: HTMLCanvasElement | null;
-}
+type LandingHeroCanvasExpose = {
+	canvasRef: HTMLCanvasElement | undefined;
+};
 
-interface LandingHeroCopyExpose {
-	bodyRef: HTMLElement | null;
-	line1Ref: HTMLElement | null;
-	line2Ref: HTMLElement | null;
-	line3Ref: HTMLElement | null;
-	scanlineRef: HTMLElement | null;
-}
+type LandingHeroCopyExpose = {
+	bodyRef: HTMLElement | undefined;
+	line1Ref: HTMLElement | undefined;
+	line2Ref: HTMLElement | undefined;
+	line3Ref: HTMLElement | undefined;
+	scanlineRef: HTMLElement | undefined;
+};
 
-interface LandingHeroReadoutExpose {
-	bracketRef: HTMLElement | null;
-	seg1Ref: HTMLElement | null;
-	seg2Ref: HTMLElement | null;
-	seg3Ref: HTMLElement | null;
-}
+type LandingHeroReadoutExpose = {
+	bracketRef: HTMLElement | undefined;
+	seg1Ref: HTMLElement | undefined;
+	seg2Ref: HTMLElement | undefined;
+	seg3Ref: HTMLElement | undefined;
+};
 
-const sectionRef = ref<HTMLElement | null>(null);
-const canvasComponentRef = ref<LandingHeroCanvasExpose | null>(null);
-const copyRef = ref<LandingHeroCopyExpose | null>(null);
-const readoutRef = ref<LandingHeroReadoutExpose | null>(null);
-const canvasRef = computed(() => canvasComponentRef.value?.canvasRef ?? null);
+const sectionRef = ref<HTMLElement>();
+const canvasComponentRef = ref<LandingHeroCanvasExpose>();
+const copyRef = ref<LandingHeroCopyExpose>();
+const readoutRef = ref<LandingHeroReadoutExpose>();
+const canvasRef = computed(() => canvasComponentRef.value?.canvasRef);
 const { canvasReady, pulse, setupCanvas } = useLandingHeroCanvas(
 	sectionRef,
 	canvasRef
@@ -36,15 +36,15 @@ const { canvasReady, pulse, setupCanvas } = useLandingHeroCanvas(
 
 useLandingHeroIntro(
 	{
-		bracketRef: computed(() => readoutRef.value?.bracketRef ?? null),
-		seg1Ref: computed(() => readoutRef.value?.seg1Ref ?? null),
-		seg2Ref: computed(() => readoutRef.value?.seg2Ref ?? null),
-		seg3Ref: computed(() => readoutRef.value?.seg3Ref ?? null),
-		bodyRef: computed(() => copyRef.value?.bodyRef ?? null),
-		line1Ref: computed(() => copyRef.value?.line1Ref ?? null),
-		line2Ref: computed(() => copyRef.value?.line2Ref ?? null),
-		line3Ref: computed(() => copyRef.value?.line3Ref ?? null),
-		scanlineRef: computed(() => copyRef.value?.scanlineRef ?? null),
+		bracketRef: computed(() => readoutRef.value?.bracketRef),
+		seg1Ref: computed(() => readoutRef.value?.seg1Ref),
+		seg2Ref: computed(() => readoutRef.value?.seg2Ref),
+		seg3Ref: computed(() => readoutRef.value?.seg3Ref),
+		bodyRef: computed(() => copyRef.value?.bodyRef),
+		line1Ref: computed(() => copyRef.value?.line1Ref),
+		line2Ref: computed(() => copyRef.value?.line2Ref),
+		line3Ref: computed(() => copyRef.value?.line3Ref),
+		scanlineRef: computed(() => copyRef.value?.scanlineRef),
 	},
 	{ setupCanvas }
 );
@@ -52,7 +52,7 @@ useLandingHeroIntro(
 function handleHeroPointerDown(event: PointerEvent) {
 	if (event.button !== undefined && event.button !== 0) return;
 
-	const target = event.target as HTMLElement | null;
+	const target = event.target as HTMLElement | undefined;
 	if (
 		target?.closest("a, button, input, label, [data-landing-hero-no-pulse]")
 	) {

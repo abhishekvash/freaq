@@ -22,7 +22,7 @@ const pact = [
 	},
 ] as const;
 
-const headerRef = ref<HTMLElement | null>(null);
+const headerRef = ref<HTMLElement>();
 const { elements: pactItemRefs, setElementRef: setPactItemRef } =
 	useElementListRefs();
 const { addRevealTarget, revealList } = useLandingReveal();
@@ -56,13 +56,13 @@ revealList(
 					class="pact-row group grid grid-cols-12 gap-panel py-panel first:pt-0 sm:py-section"
 				>
 					<span
-						class="pact-numeral col-span-12 font-mono text-stagger-2 leading-[0.85] font-bold text-muted-dark tabular-nums sm:col-span-3"
+						class="col-span-12 font-mono text-stagger-2 leading-[0.85] font-bold text-muted-dark tabular-nums transition-[color,text-shadow] duration-300 ease-out group-focus-within:text-accent-dark group-hover:text-accent-dark group-hover:shadow-redline motion-reduce:transition-none sm:col-span-3"
 					>
 						{{ item.n }}
 					</span>
 					<div class="col-span-12 sm:col-span-9 lg:col-span-7">
 						<h3
-							class="font-display text-[clamp(1.7rem,3vw,2.6rem)] leading-[0.95] font-bold text-text-dark uppercase"
+							class="font-display text-subtitle font-bold text-text-dark uppercase"
 						>
 							{{ item.title }}
 						</h3>
@@ -77,25 +77,3 @@ revealList(
 		</div>
 	</section>
 </template>
-
-<style scoped>
-.pact-numeral {
-	transition:
-		color 320ms cubic-bezier(0.22, 1, 0.36, 1),
-		text-shadow 320ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.pact-row:hover .pact-numeral,
-.pact-row:focus-within .pact-numeral {
-	color: var(--freaq-accent);
-	text-shadow:
-		0 0 18px rgba(240, 68, 54, 0.4),
-		0 0 36px rgba(240, 68, 54, 0.18);
-}
-
-@media (prefers-reduced-motion: reduce) {
-	.pact-numeral {
-		transition: none !important;
-	}
-}
-</style>

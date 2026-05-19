@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { useLandingReveal } from "~/composables/landing/useLandingReveal";
 
-const footerRef = ref<HTMLElement | null>(null);
+const footerRef = ref<HTMLElement>();
 const { addRevealTarget } = useLandingReveal();
 
 addRevealTarget(() => footerRef.value, { y: 14, duration: 0.5 });

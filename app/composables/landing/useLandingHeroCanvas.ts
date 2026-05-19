@@ -1,13 +1,13 @@
 import { createWaveEnvelope } from "~/utils/waveform";
 
 export function useLandingHeroCanvas(
-	sectionRef: Readonly<Ref<HTMLElement | null>>,
-	canvasRef: Readonly<Ref<HTMLCanvasElement | null>>
+	sectionRef: Readonly<Ref<HTMLElement | undefined>>,
+	canvasRef: Readonly<Ref<HTMLCanvasElement | undefined>>
 ) {
 	const canvasReady = shallowRef(false);
 	let canvasRaf: number | undefined;
 	let cleanupFns: Array<() => void> = [];
-	let firePulse: ((originXPage?: number) => void) | null = null;
+	let firePulse: ((originXPage?: number) => void) | undefined;
 
 	function setupCanvas() {
 		const canvas = canvasRef.value;
@@ -55,7 +55,7 @@ export function useLandingHeroCanvas(
 		const pulseDuration = 1600;
 		let lastPulseStart = performance.now() - pulseDuration + 2400;
 		let nextPulseGap = 4500 + Math.random() * 2000;
-		let pulseOriginNorm: number | null = null;
+		let pulseOriginNorm: number | undefined;
 
 		firePulse = (originXPage) => {
 			const rect = sectionEl.getBoundingClientRect();
@@ -65,7 +65,7 @@ export function useLandingHeroCanvas(
 					Math.min(1, (originXPage - rect.left) / rect.width)
 				);
 			} else {
-				pulseOriginNorm = null;
+				pulseOriginNorm = undefined;
 			}
 			lastPulseStart = performance.now();
 			nextPulseGap = 4500 + Math.random() * 2000;
@@ -117,7 +117,7 @@ export function useLandingHeroCanvas(
 			const pulseActive =
 				now - lastPulseStart >= 0 &&
 				now - lastPulseStart < pulseDuration;
-			if (!pulseActive) pulseOriginNorm = null;
+			if (!pulseActive) pulseOriginNorm = undefined;
 
 			if (!firstFrameDone) {
 				firstFrameDone = true;
@@ -129,7 +129,7 @@ export function useLandingHeroCanvas(
 		cleanupFns.push(() => {
 			if (canvasRaf) cancelAnimationFrame(canvasRaf);
 			canvasRaf = undefined;
-			firePulse = null;
+			firePulse = undefined;
 		});
 	}
 
@@ -153,16 +153,16 @@ export function useLandingHeroCanvas(
 	};
 }
 
-interface DrawFrameOptions {
+type DrawFrameOptions = {
 	canvasCtx: CanvasRenderingContext2D;
 	h: number;
 	lastPulseStart: number;
 	points: number[];
 	pulseDuration: number;
-	pulseOriginNorm: number | null;
+	pulseOriginNorm: number | undefined;
 	scrollProgress: number;
 	w: number;
-}
+};
 
 function drawFrame(options: DrawFrameOptions) {
 	const {
@@ -195,12 +195,12 @@ function drawFrame(options: DrawFrameOptions) {
 	const pulseProgress = pulseActive ? pulseT / pulseDuration : 0;
 	const pulseStrength = pulseActive ? Math.sin(pulseProgress * Math.PI) : 0;
 	const pulseX =
-		pulseOriginNorm !== null
+		pulseOriginNorm !== undefined
 			? margin +
 				pulseOriginNorm * drawW +
 				(pulseProgress - 0.5) * drawW * 0.6
 			: margin - 100 + pulseProgress * (drawW + 200);
-	const sigma = pulseOriginNorm !== null ? 130 : 95;
+	const sigma = pulseOriginNorm !== undefined ? 130 : 95;
 	const twoSigmaSq = 2 * sigma * sigma;
 
 	canvasCtx.strokeStyle = "rgba(48,52,52,0.5)";

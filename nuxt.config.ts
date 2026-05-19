@@ -4,10 +4,32 @@ import tailwindcss from "@tailwindcss/vite";
 export default defineNuxtConfig({
 	compatibilityDate: "2025-07-15",
 	devtools: { enabled: true },
-	modules: ["@nuxt/eslint", "nuxt-skill-hub"],
+	modules: ["@nuxt/eslint", "@nuxt/fonts", "nuxt-skill-hub"],
 	css: ["~/assets/css/tailwind.css"],
+	fonts: {
+		provider: "fontsource",
+		families: [
+			{
+				name: "Bai Jamjuree",
+				weights: [400, 500, 600, 700],
+				styles: ["normal"],
+				subsets: ["latin"],
+				global: true,
+			},
+			{
+				name: "JetBrains Mono",
+				weights: [400, 500, 700, 800],
+				styles: ["normal"],
+				subsets: ["latin"],
+				global: true,
+			},
+		],
+	},
 	vite: {
 		plugins: [tailwindcss()],
+		optimizeDeps: {
+			include: ["gsap", "gsap/TextPlugin", "motion"],
+		},
 	},
 	imports: {
 		dirs: ["~/composables/**"],
@@ -16,5 +38,8 @@ export default defineNuxtConfig({
 		targets: ["claude-code", "codex"],
 		generationMode: "prepare",
 		eslint: false,
+	},
+	experimental: {
+		inlineRouteRules: true,
 	},
 });

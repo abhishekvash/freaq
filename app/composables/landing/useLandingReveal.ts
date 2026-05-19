@@ -1,5 +1,6 @@
 type RevealOptions = {
 	delay?: number;
+	delayFromMount?: boolean;
 	duration?: number;
 	y?: number;
 };
@@ -70,21 +71,34 @@ async function revealElement(
 	).matches;
 	if (prefersReducedMotion) return;
 
-	const { animate, inView } = await import("motion");
-	const y = options.y ?? 22;
+	const mountTime = performance.now();
+	let motion: typeof import("motion");
+	try {
+		motion = await import("motion");
+	} catch (error) {
+		showElement(element);
+		console.error("landing.reveal.motionImportFailed", error);
+		return;
+	}
 
+	const y = options.y ?? 22;
 	element.style.opacity = "0";
 	element.style.transform = `translate3d(0, ${y}px, 0)`;
 	element.style.willChange = "opacity, transform";
 
-	inView(
+	motion.inView(
 		element,
 		() => {
-			animate(
+			const elapsedSeconds = (performance.now() - mountTime) / 1000;
+			const delay = options.delayFromMount
+				? Math.max(0, (options.delay ?? 0) - elapsedSeconds)
+				: (options.delay ?? 0);
+
+			motion.animate(
 				element,
 				{ opacity: 1, transform: "translate3d(0, 0, 0)" },
 				{
-					delay: options.delay ?? 0,
+					delay,
 					duration: options.duration ?? 0.6,
 					ease: easeOutQuart,
 				}
@@ -92,8 +106,15 @@ async function revealElement(
 
 			return () => {
 				element.style.willChange = "";
+				element.style.transform = "none";
 			};
 		},
 		{ amount: 0.18 }
 	);
+}
+
+function showElement(element: HTMLElement) {
+	element.style.opacity = "1";
+	element.style.transform = "none";
+	element.style.willChange = "";
 }

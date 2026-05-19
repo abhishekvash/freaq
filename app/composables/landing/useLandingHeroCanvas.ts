@@ -53,8 +53,8 @@ export function useLandingHeroCanvas(
 		let firstFrameDone = false;
 		let inView = true;
 		const pulseDuration = 1600;
-		let lastPulseStart = performance.now() - pulseDuration + 2400;
-		let nextPulseGap = 4500 + Math.random() * 2000;
+		let lastPulseStart = performance.now() - pulseDuration + 1800;
+		let nextPulseGap = 2000 + Math.random() * 1000;
 		let pulseOriginNorm: number | undefined;
 
 		firePulse = (originXPage) => {
@@ -68,7 +68,7 @@ export function useLandingHeroCanvas(
 				pulseOriginNorm = undefined;
 			}
 			lastPulseStart = performance.now();
-			nextPulseGap = 4500 + Math.random() * 2000;
+			nextPulseGap = 2000 + Math.random() * 1000;
 		};
 
 		const io = new IntersectionObserver(
@@ -100,7 +100,7 @@ export function useLandingHeroCanvas(
 			const now = performance.now();
 			if (now - lastPulseStart > pulseDuration + nextPulseGap) {
 				lastPulseStart = now;
-				nextPulseGap = 4500 + Math.random() * 2000;
+				nextPulseGap = 2000 + Math.random() * 1000;
 			}
 
 			drawFrame({
@@ -178,11 +178,11 @@ function drawFrame(options: DrawFrameOptions) {
 	const now = performance.now();
 	const t = now * 0.001;
 	const drift =
-		0.93 + 0.008 * Math.sin(t * 1.4) + 0.006 * Math.sin(t * 2.1 + 1.7);
+		0.93 + 0.016 * Math.sin(t * 1.4) + 0.012 * Math.sin(t * 2.1 + 1.7);
 	const beatPhase = (t * 1.55) % 1;
-	const beat = Math.pow(Math.max(0, 1 - beatPhase * 2), 2.5) * 0.028;
+	const beat = Math.pow(Math.max(0, 1 - beatPhase * 2), 2.5) * 0.052;
 	const offbeatPhase = (beatPhase + 0.5) % 1;
-	const offbeat = Math.pow(Math.max(0, 1 - offbeatPhase * 2.4), 2.5) * 0.013;
+	const offbeat = Math.pow(Math.max(0, 1 - offbeatPhase * 2.4), 2.5) * 0.024;
 	const breath = drift + beat + offbeat;
 	const compress = 1 - scrollProgress * 0.22;
 	const midY = h * 0.52;
@@ -220,7 +220,7 @@ function drawFrame(options: DrawFrameOptions) {
 		const bump =
 			pulseStrength > 0.01 && dist < 260
 				? 1 +
-					0.18 * pulseStrength * Math.exp(-(dist * dist) / twoSigmaSq)
+					0.34 * pulseStrength * Math.exp(-(dist * dist) / twoSigmaSq)
 				: 1;
 		xs[i] = x;
 		vs[i] = (points[i] ?? 0) * breath * bump;
@@ -289,7 +289,7 @@ function drawPulseLine(
 		if (dist > 240) continue;
 
 		const alpha =
-			pulseStrength * 0.22 * Math.exp(-(dist * dist) / twoSigmaSq);
+			pulseStrength * 0.36 * Math.exp(-(dist * dist) / twoSigmaSq);
 		if (alpha < 0.012) continue;
 
 		canvasCtx.globalAlpha = alpha;

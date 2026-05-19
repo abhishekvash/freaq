@@ -20,12 +20,15 @@ function handleSubmit() {
 <template>
 	<section id="join" class="border-t border-line-dark">
 		<div
-			class="mx-auto grid max-w-7xl grid-cols-12 gap-panel px-panel py-hero"
+			class="mx-auto grid max-w-7xl grid-cols-12 gap-field px-field py-section sm:gap-panel sm:px-panel sm:py-hero"
 		>
-			<div ref="titleRef" class="col-span-12 lg:col-span-6">
-				<FreaqReadout class="text-muted-dark">
+			<div
+				ref="titleRef"
+				class="landing-motion-hidden col-span-12 motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100 lg:col-span-6"
+			>
+				<UiFreaqReadout class="text-muted-dark">
 					OPEN CALL · FIRST CIRCLE
-				</FreaqReadout>
+				</UiFreaqReadout>
 				<h2
 					class="mt-field font-display text-headline font-bold tracking-normal text-text-dark uppercase"
 				>
@@ -35,7 +38,7 @@ function handleSubmit() {
 
 			<div
 				ref="formRef"
-				class="col-span-12 mt-section lg:col-span-6 lg:col-start-7 lg:mt-0 lg:self-end lg:border-l lg:border-line-dark lg:pl-panel"
+				class="landing-motion-hidden col-span-12 mt-panel motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100 sm:mt-section lg:col-span-6 lg:col-start-7 lg:mt-0 lg:self-end lg:border-l lg:border-line-dark lg:pl-panel"
 			>
 				<div
 					v-if="!submitted"
@@ -54,21 +57,32 @@ function handleSubmit() {
 
 				<form
 					v-if="!submitted"
-					class="mt-panel flex w-full flex-col gap-field sm:flex-row sm:items-stretch"
+					class="mt-panel flex w-full flex-col gap-field"
 					@submit.prevent="handleSubmit"
 				>
-					<label class="sr-only" for="email">Email</label>
-					<input
-						id="email"
-						ref="emailInputRef"
-						type="email"
-						required
-						placeholder="your@email.com"
-						class="min-h-11 flex-1 rounded-sm border border-line-dark bg-surface-dark px-field py-3 text-text-dark placeholder:text-dim-dark focus:border-accent-dark focus:outline-none"
-					/>
-					<FreaqButton type="submit" class="px-panel">
-						ENTER THE CIRCLE
-					</FreaqButton>
+					<label
+						class="font-mono text-label font-medium tracking-normal text-dim-dark uppercase"
+						for="email"
+					>
+						Signal address
+					</label>
+					<div
+						class="flex w-full flex-col gap-field md:flex-row md:items-stretch"
+					>
+						<input
+							id="email"
+							ref="emailInputRef"
+							type="email"
+							required
+							autocomplete="email"
+							inputmode="email"
+							placeholder="your@email.com"
+							class="min-h-11 w-full min-w-0 flex-1 rounded-sm border border-line-dark bg-surface-dark px-field py-3 text-text-dark transition-[background-color,border-color,outline-color] duration-200 ease-out placeholder:text-dim-dark hover:border-muted-dark hover:bg-raised-dark focus:border-accent-dark focus:outline-2 focus:outline-offset-4 focus:outline-focus-dark"
+						/>
+						<UiFreaqButton type="submit" class="px-panel md:w-auto">
+							ENTER THE CIRCLE
+						</UiFreaqButton>
+					</div>
 				</form>
 
 				<div
@@ -79,7 +93,7 @@ function handleSubmit() {
 					aria-live="polite"
 				>
 					<div
-						class="signal-stamp-sheet relative overflow-hidden rounded-sm border border-success-dark bg-surface-dark p-field shadow-vessel-edge motion-reduce:animate-none"
+						class="signal-stamp-sheet relative max-w-[52ch] overflow-hidden rounded-sm border border-success-dark bg-surface-dark p-field shadow-vessel-edge motion-reduce:animate-none"
 					>
 						<span
 							class="signal-stamp-dot mr-inline mb-0.5 inline-block size-2 rounded-pill bg-success-dark align-middle motion-reduce:animate-none"

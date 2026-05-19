@@ -18,6 +18,7 @@ type LandingHeroCopyExpose = {
 };
 
 type LandingHeroReadoutExpose = {
+	readoutRef: HTMLElement | undefined;
 	bracketRef: HTMLElement | undefined;
 	seg1Ref: HTMLElement | undefined;
 	seg2Ref: HTMLElement | undefined;
@@ -36,6 +37,7 @@ const { canvasReady, pulse, setupCanvas } = useLandingHeroCanvas(
 
 useLandingHeroIntro(
 	{
+		readoutRef: computed(() => readoutRef.value?.readoutRef),
 		bracketRef: computed(() => readoutRef.value?.bracketRef),
 		seg1Ref: computed(() => readoutRef.value?.seg1Ref),
 		seg2Ref: computed(() => readoutRef.value?.seg2Ref),
@@ -76,7 +78,7 @@ function handleHeroPointerDown(event: PointerEvent) {
 		/>
 
 		<div
-			class="relative mx-auto grid max-w-7xl grid-cols-12 gap-panel px-panel pt-section pb-hero"
+			class="relative mx-auto grid min-h-[calc(100svh-var(--spacing-section))] max-w-7xl grid-cols-12 content-center gap-field px-field pt-panel pb-section sm:gap-panel sm:px-panel sm:pt-section sm:pb-hero"
 		>
 			<LandingHeroReadout ref="readoutRef" />
 			<LandingHeroCopy ref="copyRef" />

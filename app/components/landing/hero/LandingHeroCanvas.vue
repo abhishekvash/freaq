@@ -19,7 +19,7 @@ defineExpose({
 		aria-hidden="true"
 		:class="[
 			'pointer-events-none absolute inset-0 h-full w-full opacity-0 transition-opacity duration-300 ease-out',
-			canvasReady && 'opacity-100',
+			canvasReady && 'opacity-45 sm:opacity-100',
 		]"
 	/>
 	<svg
@@ -28,7 +28,7 @@ defineExpose({
 		aria-hidden="true"
 		:class="[
 			'pointer-events-none absolute inset-0 h-full w-full transition-opacity duration-300 ease-out',
-			canvasReady && 'opacity-0',
+			canvasReady ? 'opacity-0' : 'opacity-45 sm:opacity-100',
 		]"
 	>
 		<line

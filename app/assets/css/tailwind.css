@@ -1,4 +1,3 @@
-@import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&display=swap");
 @import "tailwindcss";
 
 @theme {
@@ -151,6 +150,11 @@
 	:focus-visible {
 		outline: 2px solid var(--freaq-focus);
 		outline-offset: 3px;
+	}
+
+	html:not(.js) .landing-motion-hidden {
+		opacity: 1 !important;
+		transform: none !important;
 	}
 }
 

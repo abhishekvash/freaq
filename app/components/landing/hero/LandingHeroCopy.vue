@@ -16,17 +16,23 @@ defineExpose({
 
 <template>
 	<h1
-		class="col-span-12 mt-field font-display text-headline font-bold tracking-normal text-text-dark uppercase lg:col-span-9"
+		class="col-span-12 mt-field max-w-[11ch] font-display text-headline font-bold tracking-normal text-text-dark uppercase lg:col-span-10 lg:max-w-none"
 	>
-		<span ref="line1Ref" class="block will-change-[opacity,transform]">
+		<span
+			ref="line1Ref"
+			class="landing-motion-hidden block will-change-[opacity,transform] motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100"
+		>
 			ONE SEED.
 		</span>
-		<span ref="line2Ref" class="block will-change-[opacity,transform]">
+		<span
+			ref="line2Ref"
+			class="landing-motion-hidden block will-change-[opacity,transform] motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100"
+		>
 			ONE CLOCK.
 		</span>
 		<span
 			ref="line3Ref"
-			class="relative block text-accent-dark will-change-[opacity,transform]"
+			class="landing-motion-hidden relative block text-accent-dark will-change-[opacity,transform] motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100"
 		>
 			<span class="relative z-10">ONE BOUNCE.</span>
 			<span
@@ -39,7 +45,7 @@ defineExpose({
 
 	<div
 		ref="bodyRef"
-		class="landing-hero-body col-span-12 mt-section lg:col-span-7"
+		class="landing-hero-body landing-motion-hidden col-span-12 mt-panel motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100 sm:mt-section lg:col-span-7"
 	>
 		<p class="max-w-[58ch] text-body text-muted-dark">
 			Freaq is for music producers who want a deadline that bites. Every
@@ -47,11 +53,15 @@ defineExpose({
 			The circle hears it as it landed.
 		</p>
 
-		<div class="mt-panel flex flex-wrap items-center gap-field">
-			<FreaqButton href="#join">ENTER THE CIRCLE</FreaqButton>
-			<FreaqReadout class="text-accent-dark">
+		<div
+			class="mt-panel flex flex-col items-stretch gap-field sm:flex-row sm:flex-wrap sm:items-center"
+		>
+			<UiFreaqButton href="#join" class="sm:w-auto">
+				ENTER THE CIRCLE
+			</UiFreaqButton>
+			<UiFreaqReadout class="text-accent-dark sm:ml-inline">
 				· FIRST CIRCLE FORMING
-			</FreaqReadout>
+			</UiFreaqReadout>
 		</div>
 	</div>
 </template>

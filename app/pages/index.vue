@@ -9,6 +9,10 @@ useHead({
 		},
 	],
 });
+
+defineRouteRules({
+	prerender: true,
+});
 </script>
 
 <template>

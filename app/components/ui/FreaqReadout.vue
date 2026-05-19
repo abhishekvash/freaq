@@ -12,24 +12,19 @@ withDefaults(
 	}
 );
 
-const attrs = useAttrs();
-
-const rootAttrs = computed(() => {
-	const { class: _class, ...rest } = attrs;
-	return rest;
-});
+const { forwardedAttrs, forwardedClass } = useForwardedAttrs();
 </script>
 
 <template>
 	<component
 		:is="as"
-		v-bind="rootAttrs"
+		v-bind="forwardedAttrs"
 		:class="[
 			'font-mono text-label font-medium tracking-normal uppercase',
 			panel
 				? 'rounded-md border border-line-dark bg-surface-dark px-field py-field shadow-vessel-edge'
 				: '',
-			attrs.class,
+			forwardedClass,
 		]"
 	>
 		<slot />

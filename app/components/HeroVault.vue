@@ -66,6 +66,7 @@ const staticWave = (() => {
 
 let canvasRaf: number | undefined
 let cleanupFns: Array<() => void> = []
+let firePulse: ((originXPage?: number) => void) | null = null
 
 function setupCanvas() {
   const canvas = canvasRef.value
@@ -130,6 +131,18 @@ function setupCanvas() {
   const pulseDuration = 1600
   let lastPulseStart = performance.now() - pulseDuration + 2400
   let nextPulseGap = 4500 + Math.random() * 2000
+  let pulseOriginNorm: number | null = null
+
+  firePulse = (originXPage) => {
+    const rect = section.getBoundingClientRect()
+    if (typeof originXPage === 'number' && rect.width > 0) {
+      pulseOriginNorm = Math.max(0, Math.min(1, (originXPage - rect.left) / rect.width))
+    } else {
+      pulseOriginNorm = null
+    }
+    lastPulseStart = performance.now()
+    nextPulseGap = 4500 + Math.random() * 2000
+  }
   const io = new IntersectionObserver(
     (entries) => {
       inView = entries.some((e) => e.isIntersecting)
@@ -183,8 +196,15 @@ function setupCanvas() {
     const pulseActive = pulseT >= 0 && pulseT < pulseDuration
     const pulseProgress = pulseActive ? pulseT / pulseDuration : 0
     const pulseStrength = pulseActive ? Math.sin(pulseProgress * Math.PI) : 0
-    const pulseX = margin - 100 + pulseProgress * (drawW + 200)
-    const sigma = 95
+    let pulseX: number
+    if (pulseOriginNorm !== null) {
+      const sweep = (pulseProgress - 0.5) * drawW * 0.6
+      pulseX = margin + pulseOriginNorm * drawW + sweep
+    } else {
+      pulseX = margin - 100 + pulseProgress * (drawW + 200)
+    }
+    if (!pulseActive) pulseOriginNorm = null
+    const sigma = pulseOriginNorm !== null ? 130 : 95
     const twoSigmaSq = 2 * sigma * sigma
 
     ctx.strokeStyle = 'rgba(48,52,52,0.5)'
@@ -259,7 +279,15 @@ function setupCanvas() {
   cleanupFns.push(() => {
     if (canvasRaf) cancelAnimationFrame(canvasRaf)
     canvasRaf = undefined
+    firePulse = null
   })
+}
+
+function handleVaultPointerDown(event: PointerEvent) {
+  if (event.button !== undefined && event.button !== 0) return
+  const target = event.target as HTMLElement | null
+  if (target?.closest('a, button, input, label, [data-vault-no-pulse]')) return
+  firePulse?.(event.clientX)
 }
 
 onMounted(async () => {
@@ -364,6 +392,7 @@ onBeforeUnmount(() => {
     id="top"
     ref="sectionRef"
     class="vault relative isolate overflow-hidden"
+    @pointerdown="handleVaultPointerDown"
   >
     <canvas
       ref="canvasRef"

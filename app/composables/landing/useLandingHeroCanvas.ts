@@ -182,8 +182,7 @@ function drawFrame(options: DrawFrameOptions) {
 	const beatPhase = (t * 1.55) % 1;
 	const beat = Math.pow(Math.max(0, 1 - beatPhase * 2), 2.5) * 0.052;
 	const offbeatPhase = (beatPhase + 0.5) % 1;
-	const offbeat =
-		Math.pow(Math.max(0, 1 - offbeatPhase * 2.4), 2.5) * 0.024;
+	const offbeat = Math.pow(Math.max(0, 1 - offbeatPhase * 2.4), 2.5) * 0.024;
 	const breath = drift + beat + offbeat;
 	const compress = 1 - scrollProgress * 0.22;
 	const midY = h * 0.52;

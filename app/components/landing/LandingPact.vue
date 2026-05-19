@@ -124,9 +124,7 @@ const playheadPosition = computed(() => {
 	return ENVELOPE_POINTS[ENVELOPE_POINTS.length - 1];
 });
 
-const dashOffset = computed(
-	() => TOTAL_LENGTH * (1 - remappedProgress.value)
-);
+const dashOffset = computed(() => TOTAL_LENGTH * (1 - remappedProgress.value));
 
 const { addRevealTarget } = useLandingReveal();
 addRevealTarget(() => headerRef.value, {
@@ -193,7 +191,9 @@ onMounted(() => {
 					class="landing-motion-hidden max-w-[20ch] font-display text-title font-bold tracking-normal text-text-dark uppercase motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100"
 				>
 					THE IDEA.
-					<span class="text-accent-dark">CONSTRAINT AS INSTRUMENT.</span>
+					<span class="text-accent-dark"
+						>CONSTRAINT AS INSTRUMENT.</span
+					>
 				</h2>
 
 				<div class="pact-stage__grid">
@@ -258,10 +258,7 @@ onMounted(() => {
 
 					<div class="pact-stage__content-wrap">
 						<Transition name="pact-fade" mode="out-in">
-							<div
-								:key="activeIndex"
-								class="pact-stage__content"
-							>
+							<div :key="activeIndex" class="pact-stage__content">
 								<span
 									class="pact-stage__stamp"
 									:data-state="activeChannel.stampState"
@@ -287,7 +284,9 @@ onMounted(() => {
 							<span class="pact-stage__progress-text">
 								{{ String(activeIndex + 1).padStart(2, "0") }}
 								<span class="pact-stage__progress-sep">/</span>
-								<span class="pact-stage__progress-total">03</span>
+								<span class="pact-stage__progress-total"
+									>03</span
+								>
 							</span>
 						</div>
 					</div>

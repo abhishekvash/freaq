@@ -48,6 +48,12 @@ typography:
         fontWeight: 700
         lineHeight: 0.95
         letterSpacing: "0px"
+    subtitle:
+        fontFamily: "Bai Jamjuree, system-ui, sans-serif"
+        fontSize: "clamp(1.7rem, 3vw, 2.6rem)"
+        fontWeight: 700
+        lineHeight: 0.95
+        letterSpacing: "0px"
     body:
         fontFamily: "Bai Jamjuree, system-ui, sans-serif"
         fontSize: "16px"
@@ -276,6 +282,10 @@ Long-form pages (landing, manifesto, week archive) can break container with edge
 ### Signature Component
 
 **Redline Instrument Panel:** A rounded dark module containing a stable mono timer, seed/channel controls, and red dB meter bars. It represents sealed-seed pressure and should be reused as the main visual metaphor for active ritual states.
+
+### Motion / Animation
+
+Motion should feel like instrument response under pressure: precise, restrained, and tied to ritual state. Prefer Motion for reveal, entrance, scroll/in-view, spring, and sequenced UI motion. Use CSS for simple transitions, pseudo-element effects, reduced-motion-safe keyframes, and small state feedback. Use GSAP only when timeline or plugin control is necessary, such as typed text sequences. All pulsing, scanline, timer, and reveal effects must respect reduced motion preferences.
 
 ## 6. Do's and Don'ts
 

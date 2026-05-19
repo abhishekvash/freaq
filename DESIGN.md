@@ -235,7 +235,7 @@ Freaq should default to tonal layering, hard borders, and luminous red energy ra
 - **Hover / Focus:** Red may brighten or glow slightly. Focus uses explicit ring treatment and must not rely on color alone.
 - **Secondary / Ghost:** Dark surface or transparent background, bone text, full border, no side-stripe accent.
 - **Verb Vocabulary:** CTA text inside the running ritual uses armed-and-loaded language from the studio: `Arm sample seed`, `Strike start`, `Print bounce`, `Lock bounce`, `Bounce final`, `Cue seed`. Never use soft marketing verbs (`Try`, `Get started`, `Learn more`, `Explore`, `Continue`). The verb matches the consequence of the action.
-- **Community CTA carve-out:** Landing and marketing surfaces may use the circle-vocabulary CTA `ENTER THE CIRCLE` (and close kin like `INTO THE CIRCLE`) for the pre-ritual join action. This is distinct from in-ritual buttons (Start, Lock, Submit, Bounce), which stay armed-and-loaded. Do not mix the two vocabularies on the same surface.
+- **Community CTA carve-out:** Landing and marketing surfaces may use the circle-vocabulary CTA `ENTER THE CIRCLE` (and close kin like `INTO THE CIRCLE`) for the pre-ritual join action. This is a community invitation, not a conversion CTA — Freaq is FOSS and not money-motivated, so CTA weight comes from the invite itself, not from funnel best practices. This vocabulary is distinct from in-ritual buttons (Start, Lock, Submit, Bounce), which stay armed-and-loaded. Do not mix the two vocabularies on the same surface.
 
 ### Chips
 

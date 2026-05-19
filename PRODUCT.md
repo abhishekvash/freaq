@@ -6,7 +6,7 @@ brand
 
 ## Users
 
-Freaq is for music producers who care about music as both structure and feeling. They may make IDM, hip-hop, ambient, folk, experimental sketches, or anything between. They use the product in a focused creative moment, often at night or around a self-imposed Friday ritual, when the appeal is not infinite choice but a constraint that forces taste into action.
+Freaq is for music producers who care about music as both structure and feeling. They may make IDM, hip-hop, ambient, folk, experimental sketches, or anything between. They join Freaq as members of a circle, not as customers of a service. They use the product in a focused creative moment, often at night or around a self-imposed Friday ritual, when the appeal is not infinite choice but a constraint that forces taste into action.
 
 ## Product Purpose
 
@@ -14,13 +14,24 @@ Freaq is a weekly music creative ritual built around a circle of producers. Ever
 
 Success means the interface makes the ritual feel irreversible, fair, and worth caring about. It should invite producers into deliberate human craft, not content churn.
 
+## Project Stance
+
+Freaq is a community platform, not a product for sale. It ships as FOSS — free and open source — and is not money-motivated. The email list, the circle, and any future surfaces exist to recruit and gather, not to acquire customers.
+
+This stance shapes everything downstream:
+
+- No funnel, conversion, or growth-metric framing in copy, CTAs, or design rationale.
+- No product-for-sale vocabulary. Avoid `users`, `customers`, `trial`, `freemium`, `convert`, `upgrade`. Prefer `members`, `circle`, `signal`, `scout`.
+- CTA weight is earned by the strength of the community invite, not by conversion best practices.
+- License, governance, and contribution paths are first-class surfaces, not footer links.
+
 ## Brand Personality
 
 Freaq is calibrated, obsessive, and raw. The voice is terse, exact, and human under pressure: human but not cozy, technical but not sterile. Technical language should appear as real signal, timer, seed, frequency, meter, and bounce language, not as decorative “tech” costume. The brand should feel like the intersection of frequency and freak: math and feeling, discipline and compulsion.
 
 ## Anti-references
 
-Avoid Apple-store glassiness, generic SaaS gradients, stock illustration, sterile productivity-tool polish, social-network creator gloss, and AI-made editorial templates. Avoid designs that feel like a normal beat battle, generic music platform, crypto leaderboard, or developer terminal cosplay. Do not make the brand feel beige, polite, endlessly rounded, or frictionless. The constraint and consequence are the product.
+Avoid Apple-store glassiness, generic SaaS gradients, stock illustration, sterile productivity-tool polish, social-network creator gloss, and AI-made editorial templates. Avoid designs that feel like a normal beat battle, generic music platform, crypto leaderboard, or developer terminal cosplay. Do not frame Freaq as a SaaS, a paid product, or a growth funnel; the language of customers, conversion, and trial does not apply here. Do not make the brand feel beige, polite, endlessly rounded, or frictionless. The constraint and consequence are the product.
 
 ## Design Principles
 

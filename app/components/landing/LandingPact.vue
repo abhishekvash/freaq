@@ -392,4 +392,67 @@ addRevealTarget(() => headerRef.value, {
 		}
 	}
 }
+
+:global(html:not(.js)) .pact-track {
+	min-height: auto;
+	padding-bottom: 0;
+}
+
+:global(html:not(.js)) .pact-stage {
+	position: relative;
+	top: auto;
+	min-height: auto;
+	padding-block: var(--spacing-section);
+}
+
+:global(html:not(.js)) .pact-stage__content-wrap {
+	display: grid;
+	grid-template-columns: 1fr;
+	gap: var(--spacing-panel);
+	min-height: auto;
+}
+
+:global(html:not(.js)) .pact-stage__content {
+	position: relative;
+	inset: auto;
+	padding: var(--spacing-panel) 0;
+	border-top: 1px solid var(--freaq-line);
+	opacity: 1;
+	pointer-events: auto;
+	transform: none;
+	transition: none;
+}
+
+:global(html:not(.js)) .pact-stage__title {
+	font-size: var(--text-subtitle);
+}
+
+:global(html:not(.js)) .pact-stage__progress {
+	display: none;
+}
+
+@media (min-width: 900px) {
+	:global(html:not(.js)) .pact-stage {
+		padding-block: var(--spacing-hero);
+	}
+
+	:global(html:not(.js)) .pact-stage__content-wrap {
+		grid-template-columns: repeat(3, minmax(0, 1fr));
+	}
+
+	:global(html:not(.js)) .pact-stage__content {
+		border-top: 0;
+		border-left: 1px solid var(--freaq-line);
+		padding: 0 var(--spacing-panel);
+	}
+
+	:global(html:not(.js)) .pact-stage__content:first-child {
+		border-left: 0;
+		padding-left: 0;
+	}
+
+	:global(html:not(.js)) .pact-stage__content:last-child {
+		padding-right: 0;
+	}
+}
 </style>

@@ -71,12 +71,22 @@ async function revealElement(
 	).matches;
 	if (prefersReducedMotion) return;
 
-	const { animate, inView } = await import("motion");
+	let motion: typeof import("motion");
+	try {
+		motion = await import("motion");
+	} catch (error) {
+		showElement(element);
+		console.error("landing.reveal.motionImportFailed", error);
+		return;
+	}
 
+	const y = options.y ?? 22;
+	element.style.opacity = "0";
+	element.style.transform = `translate3d(0, ${y}px, 0)`;
 	element.style.willChange = "opacity, transform";
 	const mountTime = performance.now();
 
-	inView(
+	motion.inView(
 		element,
 		() => {
 			const elapsedSeconds = (performance.now() - mountTime) / 1000;
@@ -84,7 +94,7 @@ async function revealElement(
 				? Math.max(0, (options.delay ?? 0) - elapsedSeconds)
 				: (options.delay ?? 0);
 
-			animate(
+			motion.animate(
 				element,
 				{ opacity: 1, transform: "translate3d(0, 0, 0)" },
 				{
@@ -101,4 +111,10 @@ async function revealElement(
 		},
 		{ amount: 0.18 }
 	);
+}
+
+function showElement(element: HTMLElement) {
+	element.style.opacity = "1";
+	element.style.transform = "none";
+	element.style.willChange = "";
 }

@@ -33,95 +33,100 @@ export function useLandingHeroIntro(
 			return;
 		}
 
-		options.setupCanvas();
-		[refs.seg1Ref, refs.seg2Ref, refs.seg3Ref].forEach((r) => {
-			if (r.value) r.value.textContent = "";
-		});
-		showElement(refs.readoutRef.value);
+		try {
+			options.setupCanvas();
+			[refs.seg1Ref, refs.seg2Ref, refs.seg3Ref].forEach((r) => {
+				if (r.value) r.value.textContent = "";
+			});
+			showElement(refs.readoutRef.value);
 
-		const [motionMod, gsapMod] = await Promise.all([
-			import("motion"),
-			import("gsap"),
-		]);
-		const animateElement = motionMod.animate as (
-			element: Element,
-			keyframes: Record<string, unknown>,
-			options?: Record<string, unknown>
-		) => unknown;
-		const gsap = gsapMod.gsap;
-		const { TextPlugin } = await import("gsap/TextPlugin");
-		gsap.registerPlugin(TextPlugin);
+			const [motionMod, gsapMod, textPluginMod] = await Promise.all([
+				import("motion"),
+				import("gsap"),
+				import("gsap/TextPlugin"),
+			]);
+			const animateElement = motionMod.animate as (
+				element: Element,
+				keyframes: Record<string, unknown>,
+				options?: Record<string, unknown>
+			) => unknown;
+			const gsap = gsapMod.gsap;
+			gsap.registerPlugin(textPluginMod.TextPlugin);
 
-		const tl = gsap.timeline();
-		const segments = [
-			{ ref: refs.seg1Ref, text: LANDING_HERO_READOUT_TEXT.seg1 },
-			{ ref: refs.seg2Ref, text: LANDING_HERO_READOUT_TEXT.seg2 },
-			{ ref: refs.seg3Ref, text: LANDING_HERO_READOUT_TEXT.seg3 },
-		] as const;
+			const tl = gsap.timeline();
+			const segments = [
+				{ ref: refs.seg1Ref, text: LANDING_HERO_READOUT_TEXT.seg1 },
+				{ ref: refs.seg2Ref, text: LANDING_HERO_READOUT_TEXT.seg2 },
+				{ ref: refs.seg3Ref, text: LANDING_HERO_READOUT_TEXT.seg3 },
+			] as const;
 
-		let cursor = 0.05;
-		segments.forEach((seg) => {
-			if (!seg.ref.value) return;
+			let cursor = 0.05;
+			segments.forEach((seg) => {
+				if (!seg.ref.value) return;
 
-			const dur = Math.max(0.1, seg.text.length * 0.028);
-			tl.to(
-				seg.ref.value,
-				{
-					duration: dur,
-					text: { value: seg.text, delimiter: "" },
-					ease: "none",
-				},
-				cursor
-			);
-			if (refs.bracketRef.value) {
+				const dur = Math.max(0.1, seg.text.length * 0.028);
 				tl.to(
-					refs.bracketRef.value,
-					{ duration: 0.06, opacity: 0.35 },
+					seg.ref.value,
+					{
+						duration: dur,
+						text: { value: seg.text, delimiter: "" },
+						ease: "none",
+					},
 					cursor
 				);
-				tl.to(
-					refs.bracketRef.value,
-					{ duration: 0.18, opacity: 1 },
-					cursor + 0.06
+				if (refs.bracketRef.value) {
+					tl.to(
+						refs.bracketRef.value,
+						{ duration: 0.06, opacity: 0.35 },
+						cursor
+					);
+					tl.to(
+						refs.bracketRef.value,
+						{ duration: 0.18, opacity: 1 },
+						cursor + 0.06
+					);
+				}
+				cursor += dur + 0.05;
+			});
+
+			const spring = { type: "spring", stiffness: 320, damping: 28 };
+			const headlineFrames = [
+				{ ref: refs.line1Ref, at: 0.72 },
+				{ ref: refs.line2Ref, at: 0.88 },
+				{ ref: refs.line3Ref, at: 1.04 },
+			] as const;
+
+			headlineFrames.forEach(({ ref, at }) => {
+				tl.add(() => {
+					const element = ref.value;
+					if (!element) return;
+					animateElement(element, { opacity: 1, y: 0 }, spring);
+				}, at);
+			});
+
+			if (refs.scanlineRef.value) {
+				tl.fromTo(
+					refs.scanlineRef.value,
+					{ "--landing-hero-scan-x": "-10%" },
+					{
+						"--landing-hero-scan-x": "110%",
+						duration: 0.6,
+						ease: "expo.out",
+					},
+					1.26
 				);
 			}
-			cursor += dur + 0.05;
-		});
 
-		const spring = { type: "spring", stiffness: 320, damping: 28 };
-		const headlineFrames = [
-			{ ref: refs.line1Ref, at: 0.72 },
-			{ ref: refs.line2Ref, at: 0.88 },
-			{ ref: refs.line3Ref, at: 1.04 },
-		] as const;
-
-		headlineFrames.forEach(({ ref, at }) => {
-			tl.add(() => {
-				const element = ref.value;
-				if (!element) return;
-				animateElement(element, { opacity: 1, y: 0 }, spring);
-			}, at);
-		});
-
-		if (refs.scanlineRef.value) {
-			tl.fromTo(
-				refs.scanlineRef.value,
-				{ "--landing-hero-scan-x": "-10%" },
-				{
-					"--landing-hero-scan-x": "110%",
-					duration: 0.6,
-					ease: "expo.out",
-				},
-				1.26
-			);
-		}
-
-		if (refs.bodyRef.value) {
-			tl.to(
-				refs.bodyRef.value,
-				{ opacity: 1, y: 0, duration: 0.32, ease: "power2.out" },
-				LANDING_HERO_INTRO_COMPLETE_DELAY - 0.26
-			);
+			if (refs.bodyRef.value) {
+				tl.to(
+					refs.bodyRef.value,
+					{ opacity: 1, y: 0, duration: 0.32, ease: "power2.out" },
+					LANDING_HERO_INTRO_COMPLETE_DELAY - 0.26
+				);
+			}
+		} catch (error) {
+			setStaggerFinal(refs);
+			console.error("landing.heroIntro.animationImportFailed", error);
 		}
 	});
 }

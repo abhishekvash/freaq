@@ -186,10 +186,16 @@ In both modes, never use red on body copy, ordinary borders, or as a general sec
 
 **Character:** Bai Jamjuree gives Freaq engineered geometry without sterile enterprise polish. JetBrains Mono supplies stable timer and metadata readouts without turning the whole product into terminal cosplay.
 
-Recommended import:
+Font loading:
 
-```css
-@import url("https://fonts.googleapis.com/css2?family=Bai+Jamjuree:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;700;800&display=swap");
+```ts
+fonts: {
+  provider: "fontsource",
+  families: [
+    { name: "Bai Jamjuree", weights: [400, 500, 600, 700], styles: ["normal"], subsets: ["latin"], global: true },
+    { name: "JetBrains Mono", weights: [400, 500, 700, 800], styles: ["normal"], subsets: ["latin"], global: true },
+  ],
+}
 ```
 
 ### Hierarchy

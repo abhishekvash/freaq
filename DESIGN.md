@@ -285,7 +285,7 @@ Long-form pages (landing, manifesto, week archive) can break container with edge
 - **Do** use `Bai Jamjuree` for display, body, and button text.
 - **Do** use `JetBrains Mono` for timers, seed IDs, run IDs, and operational metadata.
 - **Do** preserve AA contrast for body text and controls.
-- **Do** make irreversible actions explicit in text: Start, Submit final, locked, no restart.
+- **Do** make irreversible actions explicit in text: Start, Bounce, Locked, Final. Once armed, the clock does not reset; once printed, the bounce is final. Inside the hour, iteration is open.
 - **Do** respect reduced motion preferences for pulsing, scanline, timer, and reveal effects.
 - **Do** use armed-and-loaded CTA vocabulary: `Arm`, `Strike`, `Print`, `Lock`, `Bounce`, `Cue`.
 - **Do** pair every status with a text label; never communicate state through color alone.

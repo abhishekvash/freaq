@@ -7,7 +7,7 @@ useHead({
         {
             name: "description",
             content:
-                "A sealed-seed music ritual for producers. One seed, one clock, one bounce.",
+                "A sealed seed, sixty minutes, one bounce. A weekly Friday ritual for music producers who want a deadline that bites.",
         },
     ],
 });
@@ -16,17 +16,17 @@ const pact = [
     {
         n: "01",
         title: "ONE SEALED SEED.",
-        body: "Hit Start, get a sealed seed, meet it cold, and choose a direction fast.",
+        body: "Hit Start. The seed arrives sealed. Meet it cold, no pre-prep, no warm-up.",
     },
     {
         n: "02",
         title: "ONE CLOCK.",
-        body: "The clock gives the session its edge. Move with it, finish inside it, let it sharpen the work.",
+        body: "Sixty minutes, counting down. Move with it, finish inside it, let the pressure sharpen the work.",
     },
     {
         n: "03",
         title: "ONE BOUNCE.",
-        body: "Print the take you believe in. Stand behind the bounce and let the circle hear it as it landed.",
+        body: "Print the take you believe in. The bounce is final. The circle hears it as it landed.",
     },
 ] as const;
 </script>
@@ -62,10 +62,10 @@ const pact = [
                     <p
                         class="max-w-[58ch] text-body text-muted-dark"
                     >
-                        Freaq is for music producers who want a deadline that
-                        bites. Hit Start, get a sealed seed, build inside the
-                        clock, print one bounce, and live with what the circle
-                        hears.
+                        Freaq is for music producers who want a deadline
+                        that bites. Every Friday the vault opens: one
+                        sealed seed, sixty minutes, one bounce. The
+                        circle hears it as it landed.
                     </p>
 
                     <div class="mt-panel flex flex-wrap items-center gap-field">
@@ -166,7 +166,7 @@ const pact = [
                         class="max-w-[44ch] text-body text-muted-dark"
                     >
                         Freaq is still being shaped. Add your email and I’ll
-                        send the first seed when the circle opens.
+                        send the first signal when the vault opens.
                     </p>
 
                     <form

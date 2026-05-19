@@ -10,7 +10,7 @@ Freaq is for music producers who care about music as both structure and feeling.
 
 ## Product Purpose
 
-Freaq is a weekly music creative ritual built around a circle of producers. Every Friday, the vault opens. Members hit Start, get one of five sealed seeds, and have 60 minutes to print one bounce. There are no restarts, no pre-prep, and no second chances. Sunday, bounces hit the circle and voting opens. Voting runs Sunday through Wednesday. Wednesday, the top three lands, the circle soft-resets, and Friday the vault opens again.
+Freaq is a weekly music creative ritual built around a circle of producers. Every Friday, the vault opens. Members hit Start, get one of five sealed seeds, and have 60 minutes to print one bounce. Inside the hour, producers iterate freely. The clock does not reset, the seed does not change, and the bounce is final once printed. Sunday, bounces hit the circle and voting opens. Voting runs Sunday through Wednesday. Wednesday, the top three lands, the circle soft-resets, and Friday the vault opens again.
 
 Success means the interface makes the ritual feel irreversible, fair, and worth caring about. It should invite producers into deliberate human craft, not content churn.
 
@@ -24,7 +24,7 @@ Avoid Apple-store glassiness, generic SaaS gradients, stock illustration, steril
 
 ## Design Principles
 
-1. Make scarcity visible. The one-hour window, the sealed seed, and the no-restart rule should be felt in the interface.
+1. Make scarcity visible. The one-hour window, the sealed seed, and the finality of the bounce should be felt in the interface.
 2. Treat red as signal. The accent should feel like clipping, arming, recording, peak, and consequence.
 3. Keep the hand in the machine. Even when the UI is technical, it should preserve human pressure and imperfect craft.
 4. Prefer instrument over dashboard. The surface should feel operated, not browsed.

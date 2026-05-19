@@ -148,3 +148,9 @@
     outline-offset: 3px;
   }
 }
+
+@property --vault-scan-x {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: -10%;
+}

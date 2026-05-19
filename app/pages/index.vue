@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import WaveformStrip from "~/components/WaveformStrip.vue";
-
 useHead({
     title: "FREAQ · One seed. One clock. One bounce.",
     meta: [
@@ -44,41 +42,7 @@ const pact = [
             </div>
         </header>
 
-        <section id="top">
-            <div
-                class="mx-auto grid max-w-7xl grid-cols-12 gap-panel px-panel pt-section pb-hero"
-            >
-                <h1
-                    class="col-span-12 font-display text-headline font-bold tracking-normal text-text-dark uppercase lg:col-span-9"
-                >
-                    ONE SEED.<br />
-                    ONE CLOCK.<br />
-                    <span class="text-accent-dark">ONE BOUNCE.</span>
-                </h1>
-
-                <div
-                    class="col-span-12 mt-section lg:col-span-7"
-                >
-                    <p
-                        class="max-w-[58ch] text-body text-muted-dark"
-                    >
-                        Freaq is for music producers who want a deadline
-                        that bites. Every Friday the vault opens: one
-                        sealed seed, sixty minutes, one bounce. The
-                        circle hears it as it landed.
-                    </p>
-
-                    <div class="mt-panel flex flex-wrap items-center gap-field">
-                        <FreaqButton href="#join">ENTER THE CIRCLE</FreaqButton>
-                        <FreaqReadout class="text-accent-dark"
-                            >· FIRST CIRCLE FORMING</FreaqReadout
-                        >
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <WaveformStrip :height="120" :seed="0x4711" variant="accent" />
+        <HeroVault />
 
         <section id="pact">
             <div class="mx-auto max-w-7xl px-panel pt-hero pb-hero">

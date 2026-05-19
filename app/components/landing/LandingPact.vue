@@ -116,7 +116,6 @@ function remapScroll(s: number) {
 const trackRef = ref<HTMLElement>();
 const headerRef = ref<HTMLElement>();
 const scrollProgress = ref(0);
-const prefersReducedMotion = ref(false);
 
 const remappedProgress = computed(() => remapScroll(scrollProgress.value));
 
@@ -130,10 +129,6 @@ const activeIndex = computed(() => {
 	if (s < DECAY_SCROLL_END) return 1;
 	return 2;
 });
-
-const activeChannel = computed(
-	() => channels[activeIndex.value] ?? channels[0]
-);
 
 const playheadPosition = computed(() => {
 	const target = remappedProgress.value * TOTAL_LENGTH;
@@ -164,11 +159,7 @@ addRevealTarget(() => headerRef.value, {
 onMounted(() => {
 	if (typeof window === "undefined") return;
 
-	prefersReducedMotion.value = window.matchMedia(
-		"(prefers-reduced-motion: reduce)"
-	).matches;
-
-	if (prefersReducedMotion.value) return;
+	if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
 	let raf = 0;
 
@@ -203,14 +194,8 @@ onMounted(() => {
 </script>
 
 <template>
-	<section
-		id="pact"
-		ref="trackRef"
-		class="pact-track"
-		:data-mode="prefersReducedMotion ? 'static' : 'scrub'"
-	>
-		<!-- Scroll-scrubbed mode (default) -->
-		<div v-if="!prefersReducedMotion" class="pact-stage">
+	<section id="pact" ref="trackRef" class="pact-track">
+		<div class="pact-stage">
 			<div
 				class="pact-stage__inner mx-auto max-w-7xl px-field sm:px-panel"
 			>
@@ -285,22 +270,23 @@ onMounted(() => {
 					</div>
 
 					<div class="pact-stage__content-wrap">
-						<Transition name="pact-fade" mode="out-in">
-							<div :key="activeIndex" class="pact-stage__content">
-								<span
-									class="pact-stage__stamp"
-									:data-state="activeChannel.stampState"
-								>
-									{{ activeChannel.stamp }}
-								</span>
-								<h3 class="pact-stage__title">
-									{{ activeChannel.title }}
-								</h3>
-								<p class="pact-stage__body">
-									{{ activeChannel.body }}
-								</p>
-							</div>
-						</Transition>
+						<article
+							v-for="(channel, index) in channels"
+							:key="channel.stamp"
+							class="pact-stage__content"
+							:data-active="index === activeIndex"
+						>
+							<span
+								class="pact-stage__stamp"
+								:data-state="channel.stampState"
+							>
+								{{ channel.stamp }}
+							</span>
+							<h3 class="pact-stage__title">
+								{{ channel.title }}
+							</h3>
+							<p class="pact-stage__body">{{ channel.body }}</p>
+						</article>
 
 						<div class="pact-stage__progress" aria-hidden="true">
 							<span
@@ -321,77 +307,6 @@ onMounted(() => {
 				</div>
 			</div>
 		</div>
-
-		<!-- Reduced-motion fallback: static three-up -->
-		<div
-			v-else
-			class="pact-static mx-auto max-w-7xl px-field pt-section pb-section sm:px-panel sm:pt-hero sm:pb-hero"
-		>
-			<h2
-				ref="headerRef"
-				class="max-w-[20ch] font-display text-title font-bold tracking-normal text-text-dark uppercase"
-			>
-				THE IDEA.
-				<span class="text-accent-dark">CONSTRAINT AS INSTRUMENT.</span>
-			</h2>
-
-			<div class="pact-static__grid">
-				<article
-					v-for="(channel, index) in channels"
-					:key="channel.stamp"
-					class="pact-static__module"
-				>
-					<span
-						class="pact-stage__stamp"
-						:data-state="channel.stampState"
-					>
-						{{ channel.stamp }}
-					</span>
-					<svg
-						class="pact-static__envelope"
-						viewBox="0 0 200 80"
-						preserveAspectRatio="xMidYMid meet"
-						aria-hidden="true"
-					>
-						<line
-							x1="0"
-							y1="68"
-							x2="200"
-							y2="68"
-							stroke="var(--freaq-line)"
-							stroke-width="0.6"
-							stroke-dasharray="2 4"
-							opacity="0.55"
-						/>
-						<path
-							d="M 14,64 L 56,10 L 154,54 L 184,64"
-							fill="none"
-							stroke="var(--freaq-line)"
-							stroke-width="1.1"
-							stroke-linejoin="round"
-						/>
-						<path
-							:d="
-								index === 0
-									? 'M 14,64 L 56,10'
-									: index === 1
-										? 'M 56,10 L 154,54'
-										: 'M 154,54 L 184,64'
-							"
-							fill="none"
-							stroke="var(--freaq-accent)"
-							stroke-width="2.2"
-							stroke-linecap="round"
-							stroke-linejoin="round"
-						/>
-					</svg>
-					<h3 class="pact-stage__title pact-stage__title--static">
-						{{ channel.title }}
-					</h3>
-					<p class="pact-stage__body">{{ channel.body }}</p>
-				</article>
-			</div>
-		</div>
 	</section>
 </template>
 
@@ -399,9 +314,6 @@ onMounted(() => {
 .pact-track {
 	position: relative;
 	border-bottom: 1px solid var(--freaq-line);
-}
-
-.pact-track[data-mode="scrub"] {
 	min-height: 238vh;
 	padding-bottom: 14vh;
 }
@@ -451,15 +363,32 @@ onMounted(() => {
 }
 
 .pact-stage__content-wrap {
+	position: relative;
 	display: flex;
 	flex-direction: column;
 	min-height: 240px;
 }
 
 .pact-stage__content {
+	position: absolute;
+	inset: 0 auto auto 0;
 	display: flex;
 	flex-direction: column;
 	gap: var(--spacing-field);
+	width: 100%;
+	opacity: 0;
+	pointer-events: none;
+	transform: translateY(10px);
+	transition:
+		opacity 220ms cubic-bezier(0.22, 1, 0.36, 1),
+		transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.pact-stage__content[data-active="true"] {
+	position: relative;
+	opacity: 1;
+	pointer-events: auto;
+	transform: translateY(0);
 }
 
 .pact-stage__stamp {
@@ -502,10 +431,6 @@ onMounted(() => {
 	text-transform: uppercase;
 	color: var(--freaq-text);
 	margin: 0;
-}
-
-.pact-stage__title--static {
-	font-size: var(--text-subtitle);
 }
 
 .pact-stage__body {
@@ -553,68 +478,68 @@ onMounted(() => {
 	color: var(--freaq-dim);
 }
 
-/* Content swap transition */
-.pact-fade-enter-active,
-.pact-fade-leave-active {
-	transition:
-		opacity 220ms cubic-bezier(0.22, 1, 0.36, 1),
-		transform 220ms cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.pact-fade-enter-from {
-	opacity: 0;
-	transform: translateY(10px);
-}
-
-.pact-fade-leave-to {
-	opacity: 0;
-	transform: translateY(-10px);
-}
-
-/* Static fallback */
-.pact-static__grid {
-	display: grid;
-	grid-template-columns: 1fr;
-	gap: var(--spacing-panel);
-	margin-top: var(--spacing-panel);
-}
-
-@media (min-width: 900px) {
-	.pact-static__grid {
-		grid-template-columns: repeat(3, minmax(0, 1fr));
-		margin-top: var(--spacing-section);
-	}
-}
-
-.pact-static__module {
-	position: relative;
-	display: flex;
-	flex-direction: column;
-	gap: var(--spacing-field);
-	padding: var(--spacing-panel) 0;
-	border-top: 1px solid var(--freaq-line);
-}
-
-@media (min-width: 900px) {
-	.pact-static__module {
-		border-top: 0;
-		border-left: 1px solid var(--freaq-line);
-		padding: 0 var(--spacing-panel);
+@media (prefers-reduced-motion: reduce) {
+	.pact-track {
+		min-height: auto;
+		padding-bottom: 0;
 	}
 
-	.pact-static__module:first-child {
-		border-left: 0;
-		padding-left: 0;
+	.pact-stage {
+		position: relative;
+		top: auto;
+		min-height: auto;
+		padding-block: var(--spacing-section);
 	}
 
-	.pact-static__module:last-child {
-		padding-right: 0;
+	.pact-stage__content-wrap {
+		display: grid;
+		grid-template-columns: 1fr;
+		gap: var(--spacing-panel);
+		min-height: auto;
 	}
-}
 
-.pact-static__envelope {
-	width: 100%;
-	max-width: 220px;
-	height: auto;
+	.pact-stage__content {
+		position: relative;
+		inset: auto;
+		padding: var(--spacing-panel) 0;
+		border-top: 1px solid var(--freaq-line);
+		opacity: 1;
+		pointer-events: auto;
+		transform: none;
+		transition: none;
+	}
+
+	.pact-stage__title {
+		font-size: var(--text-subtitle);
+	}
+
+	.pact-stage__progress {
+		display: none;
+	}
+
+	@media (min-width: 900px) {
+		.pact-stage {
+			padding-block: var(--spacing-hero);
+		}
+
+		.pact-stage__content-wrap {
+			grid-template-columns: repeat(3, minmax(0, 1fr));
+		}
+
+		.pact-stage__content {
+			border-top: 0;
+			border-left: 1px solid var(--freaq-line);
+			padding: 0 var(--spacing-panel);
+		}
+
+		.pact-stage__content:first-child {
+			border-left: 0;
+			padding-left: 0;
+		}
+
+		.pact-stage__content:last-child {
+			padding-right: 0;
+		}
+	}
 }
 </style>

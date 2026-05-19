@@ -132,6 +132,17 @@ export function useLandingHeroIntro(
 }
 
 function setStaggerFinal(refs: LandingHeroIntroRefs) {
+	if (refs.seg1Ref.value) {
+		refs.seg1Ref.value.textContent = LANDING_HERO_READOUT_TEXT.seg1;
+	}
+	if (refs.seg2Ref.value) {
+		refs.seg2Ref.value.textContent = LANDING_HERO_READOUT_TEXT.seg2;
+	}
+	if (refs.seg3Ref.value) {
+		refs.seg3Ref.value.textContent = LANDING_HERO_READOUT_TEXT.seg3;
+	}
+	if (refs.bracketRef.value) refs.bracketRef.value.style.opacity = "1";
+
 	[
 		refs.readoutRef,
 		refs.line1Ref,

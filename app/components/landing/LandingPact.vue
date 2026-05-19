@@ -34,6 +34,9 @@ const trackRef = ref<HTMLElement>();
 const headerRef = ref<HTMLElement>();
 const { activeIndex, dashOffset, envelopePath, playheadPosition, totalLength } =
 	useLandingPactScroll(trackRef);
+const formattedTotal = computed(() =>
+	String(channels.length).padStart(2, "0")
+);
 
 const { addRevealTarget } = useLandingReveal();
 addRevealTarget(() => headerRef.value, {
@@ -148,9 +151,9 @@ addRevealTarget(() => headerRef.value, {
 							<span class="pact-stage__progress-text">
 								{{ String(activeIndex + 1).padStart(2, "0") }}
 								<span class="pact-stage__progress-sep">/</span>
-								<span class="pact-stage__progress-total"
-									>03</span
-								>
+								<span class="pact-stage__progress-total">
+									{{ formattedTotal }}
+								</span>
 							</span>
 						</div>
 					</div>

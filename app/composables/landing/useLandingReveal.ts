@@ -71,6 +71,7 @@ async function revealElement(
 	).matches;
 	if (prefersReducedMotion) return;
 
+	const mountTime = performance.now();
 	let motion: typeof import("motion");
 	try {
 		motion = await import("motion");
@@ -84,7 +85,6 @@ async function revealElement(
 	element.style.opacity = "0";
 	element.style.transform = `translate3d(0, ${y}px, 0)`;
 	element.style.willChange = "opacity, transform";
-	const mountTime = performance.now();
 
 	motion.inView(
 		element,

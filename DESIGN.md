@@ -2,122 +2,122 @@
 name: Freaq
 description: Weekly sealed-seed music ritual identity for bedroom producers.
 colors:
-  primary: "#F04436"
-  bg-dark: "#080909"
-  surface-dark: "#111313"
-  raised-dark: "#181B1B"
-  line-dark: "#303434"
-  text-dark: "#E8E2D8"
-  muted-dark: "#AFA89D"
-  dim-dark: "#77736B"
-  accent-dark: "#F04436"
-  accent-deep-dark: "#9F1F18"
-  success-dark: "#57B77A"
-  warning-dark: "#D6A84A"
-  danger-dark: "#F04436"
-  focus-dark: "#FF6A5E"
-  bg-light: "#F3F0EA"
-  surface-light: "#E7E2D8"
-  raised-light: "#FAF7F1"
-  line-light: "#C9C1B5"
-  text-light: "#151615"
-  muted-light: "#4F4A43"
-  dim-light: "#736C63"
-  accent-light: "#C92F24"
-  accent-deep-light: "#7E1D17"
-  success-light: "#257A48"
-  warning-light: "#906515"
-  danger-light: "#B72A20"
-  focus-light: "#D93A2E"
+    primary: "#F04436"
+    bg-dark: "#080909"
+    surface-dark: "#111313"
+    raised-dark: "#181B1B"
+    line-dark: "#303434"
+    text-dark: "#E8E2D8"
+    muted-dark: "#AFA89D"
+    dim-dark: "#77736B"
+    accent-dark: "#F04436"
+    accent-deep-dark: "#9F1F18"
+    success-dark: "#57B77A"
+    warning-dark: "#D6A84A"
+    danger-dark: "#F04436"
+    focus-dark: "#FF6A5E"
+    bg-light: "#F3F0EA"
+    surface-light: "#E7E2D8"
+    raised-light: "#FAF7F1"
+    line-light: "#C9C1B5"
+    text-light: "#151615"
+    muted-light: "#4F4A43"
+    dim-light: "#736C63"
+    accent-light: "#C92F24"
+    accent-deep-light: "#7E1D17"
+    success-light: "#257A48"
+    warning-light: "#906515"
+    danger-light: "#B72A20"
+    focus-light: "#D93A2E"
 typography:
-  display:
-    fontFamily: "Bai Jamjuree, system-ui, sans-serif"
-    fontSize: "128px"
-    fontWeight: 700
-    lineHeight: 0.72
-    letterSpacing: "0px"
-  headline:
-    fontFamily: "Bai Jamjuree, system-ui, sans-serif"
-    fontSize: "72px"
-    fontWeight: 700
-    lineHeight: 0.9
-    letterSpacing: "0px"
-  title:
-    fontFamily: "Bai Jamjuree, system-ui, sans-serif"
-    fontSize: "42px"
-    fontWeight: 700
-    lineHeight: 0.95
-    letterSpacing: "0px"
-  body:
-    fontFamily: "Bai Jamjuree, system-ui, sans-serif"
-    fontSize: "16px"
-    fontWeight: 400
-    lineHeight: 1.62
-    letterSpacing: "0px"
-  label:
-    fontFamily: "JetBrains Mono, ui-monospace, SFMono-Regular, monospace"
-    fontSize: "12px"
-    fontWeight: 500
-    lineHeight: 1.4
-    letterSpacing: "0px"
+    display:
+        fontFamily: "Bai Jamjuree, system-ui, sans-serif"
+        fontSize: "128px"
+        fontWeight: 700
+        lineHeight: 0.72
+        letterSpacing: "0px"
+    headline:
+        fontFamily: "Bai Jamjuree, system-ui, sans-serif"
+        fontSize: "72px"
+        fontWeight: 700
+        lineHeight: 0.9
+        letterSpacing: "0px"
+    title:
+        fontFamily: "Bai Jamjuree, system-ui, sans-serif"
+        fontSize: "42px"
+        fontWeight: 700
+        lineHeight: 0.95
+        letterSpacing: "0px"
+    body:
+        fontFamily: "Bai Jamjuree, system-ui, sans-serif"
+        fontSize: "16px"
+        fontWeight: 400
+        lineHeight: 1.62
+        letterSpacing: "0px"
+    label:
+        fontFamily: "JetBrains Mono, ui-monospace, SFMono-Regular, monospace"
+        fontSize: "12px"
+        fontWeight: 500
+        lineHeight: 1.4
+        letterSpacing: "0px"
 rounded:
-  sm: "4px"
-  md: "8px"
-  lg: "28px"
-  pill: "999px"
+    sm: "4px"
+    md: "8px"
+    lg: "28px"
+    pill: "999px"
 spacing:
-  tick: "4px"
-  inline: "8px"
-  field: "16px"
-  panel: "32px"
-  section: "64px"
-  hero: "128px"
+    tick: "4px"
+    inline: "8px"
+    field: "16px"
+    panel: "32px"
+    section: "64px"
+    hero: "128px"
 components:
-  button-primary:
-    backgroundColor: "{colors.primary}"
-    textColor: "{colors.bg-dark}"
-    rounded: "{rounded.sm}"
-    padding: "12px 16px"
-    typography: "{typography.label}"
-  button-secondary:
-    backgroundColor: "{colors.surface-dark}"
-    textColor: "{colors.text-dark}"
-    rounded: "{rounded.sm}"
-    padding: "12px 16px"
-    typography: "{typography.label}"
-  instrument-panel:
-    backgroundColor: "{colors.surface-dark}"
-    textColor: "{colors.text-dark}"
-    rounded: "{rounded.lg}"
-    padding: "28px"
-  timer-readout:
-    backgroundColor: "{colors.surface-dark}"
-    textColor: "{colors.accent-dark}"
-    typography: "{typography.label}"
-  state-success:
-    backgroundColor: "{colors.success-dark}"
-    textColor: "{colors.bg-dark}"
-    rounded: "{rounded.sm}"
-    padding: "8px 12px"
-    typography: "{typography.label}"
-  state-warning:
-    backgroundColor: "{colors.warning-dark}"
-    textColor: "{colors.bg-dark}"
-    rounded: "{rounded.sm}"
-    padding: "8px 12px"
-    typography: "{typography.label}"
-  state-danger:
-    backgroundColor: "{colors.danger-dark}"
-    textColor: "{colors.bg-dark}"
-    rounded: "{rounded.sm}"
-    padding: "8px 12px"
-    typography: "{typography.label}"
-  focus-indicator:
-    backgroundColor: "{colors.focus-dark}"
-    textColor: "{colors.bg-dark}"
-    rounded: "{rounded.pill}"
-    padding: "4px 8px"
-    typography: "{typography.label}"
+    button-primary:
+        backgroundColor: "{colors.primary}"
+        textColor: "{colors.bg-dark}"
+        rounded: "{rounded.sm}"
+        padding: "12px 16px"
+        typography: "{typography.label}"
+    button-secondary:
+        backgroundColor: "{colors.surface-dark}"
+        textColor: "{colors.text-dark}"
+        rounded: "{rounded.sm}"
+        padding: "12px 16px"
+        typography: "{typography.label}"
+    instrument-panel:
+        backgroundColor: "{colors.surface-dark}"
+        textColor: "{colors.text-dark}"
+        rounded: "{rounded.lg}"
+        padding: "28px"
+    timer-readout:
+        backgroundColor: "{colors.surface-dark}"
+        textColor: "{colors.accent-dark}"
+        typography: "{typography.label}"
+    state-success:
+        backgroundColor: "{colors.success-dark}"
+        textColor: "{colors.bg-dark}"
+        rounded: "{rounded.sm}"
+        padding: "8px 12px"
+        typography: "{typography.label}"
+    state-warning:
+        backgroundColor: "{colors.warning-dark}"
+        textColor: "{colors.bg-dark}"
+        rounded: "{rounded.sm}"
+        padding: "8px 12px"
+        typography: "{typography.label}"
+    state-danger:
+        backgroundColor: "{colors.danger-dark}"
+        textColor: "{colors.bg-dark}"
+        rounded: "{rounded.sm}"
+        padding: "8px 12px"
+        typography: "{typography.label}"
+    focus-indicator:
+        backgroundColor: "{colors.focus-dark}"
+        textColor: "{colors.bg-dark}"
+        rounded: "{rounded.pill}"
+        padding: "4px 8px"
+        typography: "{typography.label}"
 ---
 
 # Design System: Freaq

@@ -2,155 +2,155 @@
 @import "tailwindcss";
 
 @theme {
-  --color-primary: #f04436;
+	--color-primary: #f04436;
 
-  --color-bg-dark: #080909;
-  --color-surface-dark: #111313;
-  --color-raised-dark: #181b1b;
-  --color-line-dark: #303434;
-  --color-text-dark: #e8e2d8;
-  --color-muted-dark: #afa89d;
-  --color-dim-dark: #77736b;
-  --color-accent-dark: #f04436;
-  --color-accent-deep-dark: #9f1f18;
-  --color-success-dark: #57b77a;
-  --color-warning-dark: #d6a84a;
-  --color-danger-dark: #f04436;
-  --color-focus-dark: #ff6a5e;
+	--color-bg-dark: #080909;
+	--color-surface-dark: #111313;
+	--color-raised-dark: #181b1b;
+	--color-line-dark: #303434;
+	--color-text-dark: #e8e2d8;
+	--color-muted-dark: #afa89d;
+	--color-dim-dark: #77736b;
+	--color-accent-dark: #f04436;
+	--color-accent-deep-dark: #9f1f18;
+	--color-success-dark: #57b77a;
+	--color-warning-dark: #d6a84a;
+	--color-danger-dark: #f04436;
+	--color-focus-dark: #ff6a5e;
 
-  --color-bg-light: #f3f0ea;
-  --color-surface-light: #e7e2d8;
-  --color-raised-light: #faf7f1;
-  --color-line-light: #c9c1b5;
-  --color-text-light: #151615;
-  --color-muted-light: #4f4a43;
-  --color-dim-light: #736c63;
-  --color-accent-light: #c92f24;
-  --color-accent-deep-light: #7e1d17;
-  --color-success-light: #257a48;
-  --color-warning-light: #906515;
-  --color-danger-light: #b72a20;
-  --color-focus-light: #d93a2e;
+	--color-bg-light: #f3f0ea;
+	--color-surface-light: #e7e2d8;
+	--color-raised-light: #faf7f1;
+	--color-line-light: #c9c1b5;
+	--color-text-light: #151615;
+	--color-muted-light: #4f4a43;
+	--color-dim-light: #736c63;
+	--color-accent-light: #c92f24;
+	--color-accent-deep-light: #7e1d17;
+	--color-success-light: #257a48;
+	--color-warning-light: #906515;
+	--color-danger-light: #b72a20;
+	--color-focus-light: #d93a2e;
 
-  --font-display: "Bai Jamjuree", system-ui, sans-serif;
-  --font-sans: "Bai Jamjuree", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
+	--font-display: "Bai Jamjuree", system-ui, sans-serif;
+	--font-sans: "Bai Jamjuree", system-ui, sans-serif;
+	--font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, monospace;
 
-  --text-display: clamp(5.6rem, 22vw, 18rem);
-  --text-display--line-height: 0.72;
-  --text-display--font-weight: 700;
-  --text-display--letter-spacing: 0;
+	--text-display: clamp(5.6rem, 22vw, 18rem);
+	--text-display--line-height: 0.72;
+	--text-display--font-weight: 700;
+	--text-display--letter-spacing: 0;
 
-  --text-headline: clamp(2.8rem, 7vw, 7.4rem);
-  --text-headline--line-height: 0.9;
-  --text-headline--font-weight: 700;
-  --text-headline--letter-spacing: 0;
+	--text-headline: clamp(2.8rem, 7vw, 7.4rem);
+	--text-headline--line-height: 0.9;
+	--text-headline--font-weight: 700;
+	--text-headline--letter-spacing: 0;
 
-  --text-title: clamp(2rem, 5vw, 4.8rem);
-  --text-title--line-height: 0.95;
-  --text-title--font-weight: 700;
-  --text-title--letter-spacing: 0;
+	--text-title: clamp(2rem, 5vw, 4.8rem);
+	--text-title--line-height: 0.95;
+	--text-title--font-weight: 700;
+	--text-title--letter-spacing: 0;
 
-  --text-body: 1rem;
-  --text-body--line-height: 1.62;
-  --text-body--font-weight: 400;
-  --text-body--letter-spacing: 0;
+	--text-body: 1rem;
+	--text-body--line-height: 1.62;
+	--text-body--font-weight: 400;
+	--text-body--letter-spacing: 0;
 
-  --text-label: 0.75rem;
-  --text-label--line-height: 1.4;
-  --text-label--font-weight: 500;
-  --text-label--letter-spacing: 0;
+	--text-label: 0.75rem;
+	--text-label--line-height: 1.4;
+	--text-label--font-weight: 500;
+	--text-label--letter-spacing: 0;
 
-  --text-stagger-1: clamp(2.4rem, 6vw, 5rem);
-  --text-stagger-2: clamp(3.4rem, 8vw, 6.6rem);
-  --text-stagger-3: clamp(4.6rem, 10.4vw, 8.6rem);
+	--text-stagger-1: clamp(2.4rem, 6vw, 5rem);
+	--text-stagger-2: clamp(3.4rem, 8vw, 6.6rem);
+	--text-stagger-3: clamp(4.6rem, 10.4vw, 8.6rem);
 
-  --radius-sm: 4px;
-  --radius-md: 8px;
-  --radius-lg: 28px;
-  --radius-pill: 999px;
+	--radius-sm: 4px;
+	--radius-md: 8px;
+	--radius-lg: 28px;
+	--radius-pill: 999px;
 
-  --spacing-tick: 4px;
-  --spacing-inline: 8px;
-  --spacing-field: 16px;
-  --spacing-panel: 32px;
-  --spacing-section: 64px;
-  --spacing-hero: 128px;
+	--spacing-tick: 4px;
+	--spacing-inline: 8px;
+	--spacing-field: 16px;
+	--spacing-panel: 32px;
+	--spacing-section: 64px;
+	--spacing-hero: 128px;
 
-  --shadow-redline: 0 0 90px rgb(240 68 54 / 0.16);
-  --shadow-vessel-edge: inset 0 1px 0 rgb(232 226 216 / 0.08);
+	--shadow-redline: 0 0 90px rgb(240 68 54 / 0.16);
+	--shadow-vessel-edge: inset 0 1px 0 rgb(232 226 216 / 0.08);
 }
 
 @layer base {
-  :root {
-    color-scheme: dark;
-    --freaq-bg: var(--color-bg-dark);
-    --freaq-surface: var(--color-surface-dark);
-    --freaq-raised: var(--color-raised-dark);
-    --freaq-line: var(--color-line-dark);
-    --freaq-text: var(--color-text-dark);
-    --freaq-muted: var(--color-muted-dark);
-    --freaq-dim: var(--color-dim-dark);
-    --freaq-accent: var(--color-accent-dark);
-    --freaq-accent-deep: var(--color-accent-deep-dark);
-    --freaq-success: var(--color-success-dark);
-    --freaq-warning: var(--color-warning-dark);
-    --freaq-danger: var(--color-danger-dark);
-    --freaq-focus: var(--color-focus-dark);
-  }
+	:root {
+		color-scheme: dark;
+		--freaq-bg: var(--color-bg-dark);
+		--freaq-surface: var(--color-surface-dark);
+		--freaq-raised: var(--color-raised-dark);
+		--freaq-line: var(--color-line-dark);
+		--freaq-text: var(--color-text-dark);
+		--freaq-muted: var(--color-muted-dark);
+		--freaq-dim: var(--color-dim-dark);
+		--freaq-accent: var(--color-accent-dark);
+		--freaq-accent-deep: var(--color-accent-deep-dark);
+		--freaq-success: var(--color-success-dark);
+		--freaq-warning: var(--color-warning-dark);
+		--freaq-danger: var(--color-danger-dark);
+		--freaq-focus: var(--color-focus-dark);
+	}
 
-  .theme-light {
-    color-scheme: light;
-    --freaq-bg: var(--color-bg-light);
-    --freaq-surface: var(--color-surface-light);
-    --freaq-raised: var(--color-raised-light);
-    --freaq-line: var(--color-line-light);
-    --freaq-text: var(--color-text-light);
-    --freaq-muted: var(--color-muted-light);
-    --freaq-dim: var(--color-dim-light);
-    --freaq-accent: var(--color-accent-light);
-    --freaq-accent-deep: var(--color-accent-deep-light);
-    --freaq-success: var(--color-success-light);
-    --freaq-warning: var(--color-warning-light);
-    --freaq-danger: var(--color-danger-light);
-    --freaq-focus: var(--color-focus-light);
-  }
+	.theme-light {
+		color-scheme: light;
+		--freaq-bg: var(--color-bg-light);
+		--freaq-surface: var(--color-surface-light);
+		--freaq-raised: var(--color-raised-light);
+		--freaq-line: var(--color-line-light);
+		--freaq-text: var(--color-text-light);
+		--freaq-muted: var(--color-muted-light);
+		--freaq-dim: var(--color-dim-light);
+		--freaq-accent: var(--color-accent-light);
+		--freaq-accent-deep: var(--color-accent-deep-light);
+		--freaq-success: var(--color-success-light);
+		--freaq-warning: var(--color-warning-light);
+		--freaq-danger: var(--color-danger-light);
+		--freaq-focus: var(--color-focus-light);
+	}
 
-  *,
-  *::before,
-  *::after {
-    box-sizing: border-box;
-  }
+	*,
+	*::before,
+	*::after {
+		box-sizing: border-box;
+	}
 
-  html {
-    scroll-behavior: smooth;
-    background: var(--freaq-bg);
-  }
+	html {
+		scroll-behavior: smooth;
+		background: var(--freaq-bg);
+	}
 
-  body {
-    margin: 0;
-    background: var(--freaq-bg);
-    color: var(--freaq-text);
-    font-family: var(--font-sans);
-    font-size: var(--text-body);
-    line-height: 1.62;
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-  }
+	body {
+		margin: 0;
+		background: var(--freaq-bg);
+		color: var(--freaq-text);
+		font-family: var(--font-sans);
+		font-size: var(--text-body);
+		line-height: 1.62;
+		text-rendering: optimizeLegibility;
+		-webkit-font-smoothing: antialiased;
+	}
 
-  ::selection {
-    background: var(--freaq-accent);
-    color: var(--freaq-bg);
-  }
+	::selection {
+		background: var(--freaq-accent);
+		color: var(--freaq-bg);
+	}
 
-  :focus-visible {
-    outline: 2px solid var(--freaq-focus);
-    outline-offset: 3px;
-  }
+	:focus-visible {
+		outline: 2px solid var(--freaq-focus);
+		outline-offset: 3px;
+	}
 }
 
 @property --vault-scan-x {
-  syntax: "<percentage>";
-  inherits: false;
-  initial-value: -10%;
+	syntax: "<percentage>";
+	inherits: false;
+	initial-value: -10%;
 }

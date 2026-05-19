@@ -17,6 +17,10 @@ logs
 .DS_Store
 .fleet
 .idea
+.zed
+.claude
+.codex
+.pnpm-store
 
 # Local env files
 .env

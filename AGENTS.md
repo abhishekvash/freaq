@@ -27,9 +27,9 @@ The "what" of the product lives in `PRODUCT.md`; the "how it should look and fee
 When a new token is truly needed, make it available as a first-class Tailwind utility:
 
 1. Add the raw token or alias in `app/assets/css/tailwind.css` under `@theme`, following the existing naming pattern:
-   ```css
-   --color-my-token: #abc123;
-   ```
+    ```css
+    --color-my-token: #abc123;
+    ```
 2. Use the generated utility (`bg-my-token`, `text-my-token`, `border-my-token`, etc.) instead of interpolation syntax like `bg-[--my-token]` or raw hex values.
 
 ## Repo layout

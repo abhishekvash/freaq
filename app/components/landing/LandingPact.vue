@@ -65,7 +65,7 @@ revealList(
 					class="pact-row landing-motion-hidden group grid grid-cols-12 gap-field py-panel first:pt-0 motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100 sm:gap-panel sm:py-section"
 				>
 					<span
-						class="col-span-12 font-mono text-stagger-1 leading-[0.85] font-bold text-muted-dark tabular-nums transition-[color,text-shadow] duration-300 ease-out group-focus-within:text-accent-dark group-hover:text-accent-dark group-hover:shadow-redline motion-reduce:transition-none sm:col-span-3 sm:text-stagger-2"
+						class="col-span-12 font-mono text-stagger-1 leading-[0.85] font-bold text-muted-dark tabular-nums transition-colors duration-300 ease-out group-focus-within:text-accent-dark group-hover:text-accent-dark motion-reduce:transition-none sm:col-span-3 sm:text-stagger-2"
 					>
 						{{ item.n }}
 					</span>

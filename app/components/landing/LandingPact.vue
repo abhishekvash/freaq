@@ -11,22 +11,22 @@ type Channel = {
 
 const channels = [
 	{
-		stamp: "SEALED",
+		stamp: "PROMPT OPENS",
 		stampState: "sealed",
 		title: "ATTACK.",
-		body: "The seed arrives sealed. No pre-prep, no warm-up.",
+		body: "The hidden prompt unlocks only when you start. Nobody can plan ahead, so the first move is real.",
 	},
 	{
-		stamp: "60:00",
+		stamp: "60 MINUTES",
 		stampState: "armed",
 		title: "DECAY.",
-		body: "Sixty minutes, counting down. Move with it. Let the pressure sharpen the work.",
+		body: "You get 60 minutes to make the track. Sketch fast, choose what matters, and keep moving.",
 	},
 	{
-		stamp: "FINAL",
+		stamp: "ONE AUDIO FILE",
 		stampState: "final",
 		title: "RELEASE.",
-		body: "What you commit goes out as it landed. The circle hears it raw.",
+		body: "When time is up, submit one finished audio file. The circle hears that version and votes.",
 	},
 ] as const satisfies readonly Channel[];
 

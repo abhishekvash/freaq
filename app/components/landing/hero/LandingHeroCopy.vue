@@ -47,7 +47,7 @@ defineExpose({
 		ref="bodyRef"
 		class="landing-hero-body landing-motion-hidden col-span-12 mt-panel motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100 sm:mt-section lg:col-span-7"
 	>
-		<p class="max-w-[58ch] text-body text-muted-dark">
+		<p class="max-w-[58ch] text-lead text-text-dark">
 			Freaq is for music producers who want a deadline that bites. Every
 			Friday the brief opens: one sealed seed, sixty minutes, one bounce.
 			The circle hears it as it landed.

@@ -54,7 +54,7 @@ addRevealTarget(() => bodyRef.value, { delay: 0.22, y: 18 });
 			</p>
 			<p
 				ref="bodyRef"
-				class="landing-motion-hidden mt-panel max-w-[44ch] text-body text-muted-dark motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100 sm:mt-section md:ml-auto md:text-right"
+				class="landing-motion-hidden mt-panel max-w-[44ch] text-lead text-text-dark motion-safe:translate-y-field motion-safe:opacity-0 motion-reduce:translate-y-0 motion-reduce:opacity-100 sm:mt-section md:ml-auto md:text-right"
 			>
 				Freaq gives producers a focused circle, a real constraint, and a
 				reason to finish the idea while it still has voltage.

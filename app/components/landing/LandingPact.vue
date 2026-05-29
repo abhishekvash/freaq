@@ -288,9 +288,9 @@ addRevealTarget(() => headerRef.value, {
 
 .pact-stage__body {
 	font-family: var(--font-sans);
-	font-size: var(--text-body);
-	line-height: 1.62;
-	color: var(--freaq-muted);
+	font-size: var(--text-lead);
+	line-height: 1.55;
+	color: var(--freaq-text);
 	max-width: 44ch;
 	margin: 0;
 }

@@ -42,7 +42,7 @@ function handleSubmit() {
 			>
 				<div
 					v-if="!submitted"
-					class="max-w-[52ch] space-y-field text-body text-muted-dark"
+					class="max-w-[52ch] space-y-field text-lead text-text-dark"
 				>
 					<p>
 						I’m building Freaq solo. The platform isn’t live yet.

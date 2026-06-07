@@ -3,9 +3,14 @@
 	"type": "module",
 	"private": true,
 	"packageManager": "pnpm@11.1.2",
+	"engines": {
+		"node": ">=24.16.0 <25",
+		"pnpm": "11.1.2"
+	},
 	"scripts": {
 		"build": "nuxt build",
 		"check": "pnpm lint && pnpm format:check && pnpm typecheck",
+		"ci": "pnpm install --frozen-lockfile && pnpm run check && pnpm run security",
 		"dev": "nuxt dev",
 		"format": "prettier . --write",
 		"format:check": "prettier . --check",
@@ -14,28 +19,31 @@
 		"lint:fix": "eslint . --fix",
 		"preview": "nuxt preview",
 		"postinstall": "nuxt prepare",
+		"security": "pnpm run security:osv && pnpm run security:audit",
+		"security:audit": "pnpm audit --audit-level moderate",
+		"security:osv": "osv-scanner scan source -r .",
 		"typecheck": "nuxt typecheck"
 	},
 	"dependencies": {
-		"@nuxt/fonts": "^0.14.0",
+		"@nuxt/fonts": "0.14.0",
 		"@nuxthub/core": "0.10.7",
-		"@tailwindcss/vite": "^4.1.17",
-		"gsap": "^3.15.0",
-		"motion": "^12.38.0",
-		"nuxt": "^4.4.5",
+		"@tailwindcss/vite": "4.3.0",
+		"gsap": "3.15.0",
+		"motion": "12.38.0",
+		"nuxt": "4.4.7",
 		"nuxt-skill-hub": "0.0.8",
-		"tailwindcss": "^4.1.17",
-		"vue": "^3.5.34",
-		"vue-router": "^5.0.6"
+		"tailwindcss": "4.3.0",
+		"vue": "3.5.34",
+		"vue-router": "5.0.7"
 	},
 	"devDependencies": {
-		"@nuxt/eslint": "^1.15.2",
-		"eslint": "^9.39.1",
-		"eslint-config-prettier": "^10.1.8",
-		"eslint-plugin-prettier": "^5.5.4",
-		"prettier": "^3.6.2",
-		"prettier-plugin-tailwindcss": "^0.7.2",
-		"typescript": "^5.9.3",
-		"vue-tsc": "^3.1.5"
+		"@nuxt/eslint": "1.15.2",
+		"eslint": "9.39.4",
+		"eslint-config-prettier": "10.1.8",
+		"eslint-plugin-prettier": "5.5.5",
+		"prettier": "3.8.3",
+		"prettier-plugin-tailwindcss": "0.7.4",
+		"typescript": "5.9.3",
+		"vue-tsc": "3.2.9"
 	}
 }

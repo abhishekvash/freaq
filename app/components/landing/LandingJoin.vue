@@ -50,8 +50,8 @@ function handleSubmit() {
 						first.
 					</p>
 					<p>
-						Drop your email. One signal lands the day the brief
-						opens.
+						Drop your email. I’ll let you know when Freaq is live
+						and the ritual begins.
 					</p>
 				</div>
 

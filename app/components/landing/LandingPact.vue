@@ -34,9 +34,7 @@ const trackRef = ref<HTMLElement>();
 const headerRef = ref<HTMLElement>();
 const { activeIndex, dashOffset, envelopePath, playheadPosition, totalLength } =
 	useLandingPactScroll(trackRef);
-const formattedTotal = computed(() =>
-	String(channels.length).padStart(2, "0")
-);
+const formattedTotal = computed(() => String(channels.length).padStart(2, "0"));
 
 const { addRevealTarget } = useLandingReveal();
 addRevealTarget(() => headerRef.value, {

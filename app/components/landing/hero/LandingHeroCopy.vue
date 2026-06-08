@@ -49,8 +49,8 @@ defineExpose({
 	>
 		<p class="max-w-[58ch] text-lead text-text-dark">
 			Freaq is for music producers who want a deadline that bites. Every
-			Friday the brief opens: one sealed seed, sixty minutes, one bounce.
-			The circle hears it as it landed.
+			Friday is a ritual: one sealed seed, sixty minutes, one bounce.
+			Then the circle hears what you made.
 		</p>
 
 		<div

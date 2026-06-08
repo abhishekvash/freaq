@@ -2,3 +2,9 @@ allowBuilds:
     "@parcel/watcher": true
     esbuild: true
     unrs-resolver: true
+autoInstallPeers: false
+engineStrict: true
+minimumReleaseAge: 1440
+saveExact: true
+strictPeerDependencies: true
+verifyDepsBeforeRun: install
